@@ -1,324 +1,416 @@
-// Data cho App Hoc Tieng Anh Cho Be
+// Data cho App Học Tiếng Anh Cho Bé
 
 const vocabularyData = {
   animals: {
-    title: "Dong Vat",
+    title: "Động Vật",
     titleEn: "Animals",
     icon: "🐾",
     words: [
-      { word: "dog", vietnamese: "con cho", emoji: "🐕" },
-      { word: "cat", vietnamese: "con meo", emoji: "🐱" },
-      { word: "bird", vietnamese: "con chim", emoji: "🐦" },
-      { word: "fish", vietnamese: "con ca", emoji: "🐟" },
-      { word: "lion", vietnamese: "con su tu", emoji: "🦁" },
-      { word: "elephant", vietnamese: "con voi", emoji: "🐘" },
-      { word: "monkey", vietnamese: "con khi", emoji: "🐒" },
-      { word: "rabbit", vietnamese: "con tho", emoji: "🐰" },
-      { word: "bear", vietnamese: "con gau", emoji: "🐻" },
-      { word: "tiger", vietnamese: "con ho", emoji: "🐯" }
+      { word: "dog", vietnamese: "con chó", emoji: "🐕", ipa: "/dɒɡ/" },
+      { word: "cat", vietnamese: "con mèo", emoji: "🐱", ipa: "/kæt/" },
+      { word: "bird", vietnamese: "con chim", emoji: "🐦", ipa: "/bɜːd/" },
+      { word: "fish", vietnamese: "con cá", emoji: "🐟", ipa: "/fɪʃ/" },
+      { word: "lion", vietnamese: "con sư tử", emoji: "🦁", ipa: "/ˈlaɪən/" },
+      { word: "elephant", vietnamese: "con voi", emoji: "🐘", ipa: "/ˈelɪfənt/" },
+      { word: "monkey", vietnamese: "con khỉ", emoji: "🐒", ipa: "/ˈmʌŋki/" },
+      { word: "rabbit", vietnamese: "con thỏ", emoji: "🐰", ipa: "/ˈræbɪt/" },
+      { word: "bear", vietnamese: "con gấu", emoji: "🐻", ipa: "/beə/" },
+      { word: "tiger", vietnamese: "con hổ", emoji: "🐯", ipa: "/ˈtaɪɡə/" }
     ]
   },
   colors: {
-    title: "Mau Sac",
+    title: "Màu Sắc",
     titleEn: "Colors",
     icon: "🎨",
     words: [
-      { word: "red", vietnamese: "mau do", emoji: "🔴", color: "#e74c3c" },
-      { word: "blue", vietnamese: "mau xanh duong", emoji: "🔵", color: "#3498db" },
-      { word: "green", vietnamese: "mau xanh la", emoji: "🟢", color: "#2ecc71" },
-      { word: "yellow", vietnamese: "mau vang", emoji: "🟡", color: "#f1c40f" },
-      { word: "orange", vietnamese: "mau cam", emoji: "🟠", color: "#e67e22" },
-      { word: "purple", vietnamese: "mau tim", emoji: "🟣", color: "#9b59b6" },
-      { word: "pink", vietnamese: "mau hong", emoji: "🩷", color: "#e91e8c" },
-      { word: "white", vietnamese: "mau trang", emoji: "⚪", color: "#ecf0f1" },
-      { word: "black", vietnamese: "mau den", emoji: "⚫", color: "#2c3e50" },
-      { word: "brown", vietnamese: "mau nau", emoji: "🟤", color: "#8b4513" }
+      { word: "red", vietnamese: "màu đỏ", emoji: "🔴", color: "#e74c3c", ipa: "/red/" },
+      { word: "blue", vietnamese: "màu xanh dương", emoji: "🔵", color: "#3498db", ipa: "/bluː/" },
+      { word: "green", vietnamese: "màu xanh lá", emoji: "🟢", color: "#2ecc71", ipa: "/ɡriːn/" },
+      { word: "yellow", vietnamese: "màu vàng", emoji: "🟡", color: "#f1c40f", ipa: "/ˈjeləʊ/" },
+      { word: "orange", vietnamese: "màu cam", emoji: "🟠", color: "#e67e22", ipa: "/ˈɒrɪndʒ/" },
+      { word: "purple", vietnamese: "màu tím", emoji: "🟣", color: "#9b59b6", ipa: "/ˈpɜːpl/" },
+      { word: "pink", vietnamese: "màu hồng", emoji: "🩷", color: "#e91e8c", ipa: "/pɪŋk/" },
+      { word: "white", vietnamese: "màu trắng", emoji: "⚪", color: "#ecf0f1", ipa: "/waɪt/" },
+      { word: "black", vietnamese: "màu đen", emoji: "⚫", color: "#2c3e50", ipa: "/blæk/" },
+      { word: "brown", vietnamese: "màu nâu", emoji: "🟤", color: "#8b4513", ipa: "/braʊn/" }
     ]
   },
   numbers: {
-    title: "So Dem",
+    title: "Số Đếm",
     titleEn: "Numbers",
     icon: "🔢",
     words: [
-      { word: "one", vietnamese: "mot", emoji: "1️⃣", number: 1 },
-      { word: "two", vietnamese: "hai", emoji: "2️⃣", number: 2 },
-      { word: "three", vietnamese: "ba", emoji: "3️⃣", number: 3 },
-      { word: "four", vietnamese: "bon", emoji: "4️⃣", number: 4 },
-      { word: "five", vietnamese: "nam", emoji: "5️⃣", number: 5 },
-      { word: "six", vietnamese: "sau", emoji: "6️⃣", number: 6 },
-      { word: "seven", vietnamese: "bay", emoji: "7️⃣", number: 7 },
-      { word: "eight", vietnamese: "tam", emoji: "8️⃣", number: 8 },
-      { word: "nine", vietnamese: "chin", emoji: "9️⃣", number: 9 },
-      { word: "ten", vietnamese: "muoi", emoji: "🔟", number: 10 }
+      { word: "one", vietnamese: "một", emoji: "1️⃣", number: 1, ipa: "/wʌn/" },
+      { word: "two", vietnamese: "hai", emoji: "2️⃣", number: 2, ipa: "/tuː/" },
+      { word: "three", vietnamese: "ba", emoji: "3️⃣", number: 3, ipa: "/θriː/" },
+      { word: "four", vietnamese: "bốn", emoji: "4️⃣", number: 4, ipa: "/fɔː/" },
+      { word: "five", vietnamese: "năm", emoji: "5️⃣", number: 5, ipa: "/faɪv/" },
+      { word: "six", vietnamese: "sáu", emoji: "6️⃣", number: 6, ipa: "/sɪks/" },
+      { word: "seven", vietnamese: "bảy", emoji: "7️⃣", number: 7, ipa: "/ˈsevn/" },
+      { word: "eight", vietnamese: "tám", emoji: "8️⃣", number: 8, ipa: "/eɪt/" },
+      { word: "nine", vietnamese: "chín", emoji: "9️⃣", number: 9, ipa: "/naɪn/" },
+      { word: "ten", vietnamese: "mười", emoji: "🔟", number: 10, ipa: "/ten/" }
     ]
   },
   fruits: {
-    title: "Trai Cay",
+    title: "Trái Cây",
     titleEn: "Fruits",
     icon: "🍎",
     words: [
-      { word: "apple", vietnamese: "qua tao", emoji: "🍎" },
-      { word: "banana", vietnamese: "qua chuoi", emoji: "🍌" },
-      { word: "orange", vietnamese: "qua cam", emoji: "🍊" },
-      { word: "grape", vietnamese: "qua nho", emoji: "🍇" },
-      { word: "strawberry", vietnamese: "qua dau", emoji: "🍓" },
-      { word: "watermelon", vietnamese: "qua dua hau", emoji: "🍉" },
-      { word: "pineapple", vietnamese: "qua dua", emoji: "🍍" },
-      { word: "mango", vietnamese: "qua xoai", emoji: "🥭" },
-      { word: "cherry", vietnamese: "qua cherry", emoji: "🍒" },
-      { word: "lemon", vietnamese: "qua chanh", emoji: "🍋" }
+      { word: "apple", vietnamese: "quả táo", emoji: "🍎", ipa: "/ˈæpl/" },
+      { word: "banana", vietnamese: "quả chuối", emoji: "🍌", ipa: "/bəˈnɑːnə/" },
+      { word: "orange", vietnamese: "quả cam", emoji: "🍊", ipa: "/ˈɒrɪndʒ/" },
+      { word: "grape", vietnamese: "quả nho", emoji: "🍇", ipa: "/ɡreɪp/" },
+      { word: "strawberry", vietnamese: "quả dâu", emoji: "🍓", ipa: "/ˈstrɔːbəri/" },
+      { word: "watermelon", vietnamese: "quả dưa hấu", emoji: "🍉", ipa: "/ˈwɔːtəmelən/" },
+      { word: "pineapple", vietnamese: "quả dứa", emoji: "🍍", ipa: "/ˈpaɪnæpl/" },
+      { word: "mango", vietnamese: "quả xoài", emoji: "🥭", ipa: "/ˈmæŋɡəʊ/" },
+      { word: "cherry", vietnamese: "quả anh đào", emoji: "🍒", ipa: "/ˈtʃeri/" },
+      { word: "lemon", vietnamese: "quả chanh", emoji: "🍋", ipa: "/ˈlemən/" }
     ]
   },
   bodyParts: {
-    title: "Bo Phan Co The",
+    title: "Bộ Phận Cơ Thể",
     titleEn: "Body Parts",
     icon: "🧍",
     words: [
-      { word: "head", vietnamese: "dau", emoji: "🗣️" },
-      { word: "eye", vietnamese: "mat", emoji: "👁️" },
-      { word: "nose", vietnamese: "mui", emoji: "👃" },
-      { word: "mouth", vietnamese: "mieng", emoji: "👄" },
-      { word: "ear", vietnamese: "tai", emoji: "👂" },
-      { word: "hand", vietnamese: "tay", emoji: "✋" },
-      { word: "foot", vietnamese: "chan", emoji: "🦶" },
-      { word: "arm", vietnamese: "canh tay", emoji: "💪" },
-      { word: "leg", vietnamese: "chan", emoji: "🦵" },
-      { word: "finger", vietnamese: "ngon tay", emoji: "☝️" }
+      { word: "head", vietnamese: "đầu", emoji: "🗣️", ipa: "/hed/" },
+      { word: "eye", vietnamese: "mắt", emoji: "👁️", ipa: "/aɪ/" },
+      { word: "nose", vietnamese: "mũi", emoji: "👃", ipa: "/nəʊz/" },
+      { word: "mouth", vietnamese: "miệng", emoji: "👄", ipa: "/maʊθ/" },
+      { word: "ear", vietnamese: "tai", emoji: "👂", ipa: "/ɪə/" },
+      { word: "hand", vietnamese: "bàn tay", emoji: "✋", ipa: "/hænd/" },
+      { word: "foot", vietnamese: "bàn chân", emoji: "🦶", ipa: "/fʊt/" },
+      { word: "arm", vietnamese: "cánh tay", emoji: "💪", ipa: "/ɑːm/" },
+      { word: "leg", vietnamese: "chân", emoji: "🦵", ipa: "/leɡ/" },
+      { word: "finger", vietnamese: "ngón tay", emoji: "☝️", ipa: "/ˈfɪŋɡə/" }
     ]
   },
   food: {
-    title: "Do An",
+    title: "Đồ Ăn",
     titleEn: "Food",
     icon: "🍔",
     words: [
-      { word: "rice", vietnamese: "com", emoji: "🍚" },
-      { word: "bread", vietnamese: "banh mi", emoji: "🍞" },
-      { word: "egg", vietnamese: "trung", emoji: "🥚" },
-      { word: "milk", vietnamese: "sua", emoji: "🥛" },
-      { word: "water", vietnamese: "nuoc", emoji: "💧" },
-      { word: "cake", vietnamese: "banh ngot", emoji: "🎂" },
-      { word: "candy", vietnamese: "keo", emoji: "🍬" },
-      { word: "ice cream", vietnamese: "kem", emoji: "🍦" },
-      { word: "pizza", vietnamese: "pizza", emoji: "🍕" },
-      { word: "chicken", vietnamese: "ga", emoji: "🍗" }
+      { word: "rice", vietnamese: "cơm", emoji: "🍚", ipa: "/raɪs/" },
+      { word: "bread", vietnamese: "bánh mì", emoji: "🍞", ipa: "/bred/" },
+      { word: "egg", vietnamese: "trứng", emoji: "🥚", ipa: "/eɡ/" },
+      { word: "milk", vietnamese: "sữa", emoji: "🥛", ipa: "/mɪlk/" },
+      { word: "water", vietnamese: "nước", emoji: "💧", ipa: "/ˈwɔːtə/" },
+      { word: "cake", vietnamese: "bánh ngọt", emoji: "🎂", ipa: "/keɪk/" },
+      { word: "candy", vietnamese: "kẹo", emoji: "🍬", ipa: "/ˈkændi/" },
+      { word: "ice cream", vietnamese: "kem", emoji: "🍦", ipa: "/aɪs kriːm/" },
+      { word: "pizza", vietnamese: "bánh pizza", emoji: "🍕", ipa: "/ˈpiːtsə/" },
+      { word: "chicken", vietnamese: "thịt gà", emoji: "🍗", ipa: "/ˈtʃɪkɪn/" }
     ]
   },
 
   // ========== NEW TOPICS ==========
 
   family: {
-    title: "Gia Dinh",
+    title: "Gia Đình",
     titleEn: "Family",
     icon: "👨‍👩‍👧‍👦",
     words: [
-      { word: "mother", vietnamese: "me", emoji: "👩" },
-      { word: "father", vietnamese: "bo", emoji: "👨" },
-      { word: "sister", vietnamese: "chi/em gai", emoji: "👧" },
-      { word: "brother", vietnamese: "anh/em trai", emoji: "👦" },
-      { word: "grandmother", vietnamese: "ba", emoji: "👵" },
-      { word: "grandfather", vietnamese: "ong", emoji: "👴" },
-      { word: "baby", vietnamese: "em be", emoji: "👶" },
-      { word: "aunt", vietnamese: "co/di", emoji: "👩‍🦱" },
-      { word: "uncle", vietnamese: "chu/bac", emoji: "👨‍🦱" },
-      { word: "family", vietnamese: "gia dinh", emoji: "👨‍👩‍👧‍👦" }
+      { word: "mother", vietnamese: "mẹ", emoji: "👩", ipa: "/ˈmʌðə/" },
+      { word: "father", vietnamese: "bố", emoji: "👨", ipa: "/ˈfɑːðə/" },
+      { word: "sister", vietnamese: "chị/em gái", emoji: "👧", ipa: "/ˈsɪstə/" },
+      { word: "brother", vietnamese: "anh/em trai", emoji: "👦", ipa: "/ˈbrʌðə/" },
+      { word: "grandmother", vietnamese: "bà", emoji: "👵", ipa: "/ˈɡrænmʌðə/" },
+      { word: "grandfather", vietnamese: "ông", emoji: "👴", ipa: "/ˈɡrænfɑːðə/" },
+      { word: "baby", vietnamese: "em bé", emoji: "👶", ipa: "/ˈbeɪbi/" },
+      { word: "aunt", vietnamese: "cô/dì", emoji: "👩‍🦱", ipa: "/ɑːnt/" },
+      { word: "uncle", vietnamese: "chú/bác", emoji: "👨‍🦱", ipa: "/ˈʌŋkl/" },
+      { word: "family", vietnamese: "gia đình", emoji: "👨‍👩‍👧‍👦", ipa: "/ˈfæməli/" }
     ]
   },
 
   clothes: {
-    title: "Quan Ao",
+    title: "Quần Áo",
     titleEn: "Clothes",
     icon: "👕",
     words: [
-      { word: "shirt", vietnamese: "ao so mi", emoji: "👔" },
-      { word: "pants", vietnamese: "quan dai", emoji: "👖" },
-      { word: "dress", vietnamese: "vay dam", emoji: "👗" },
-      { word: "shoes", vietnamese: "giay", emoji: "👟" },
-      { word: "hat", vietnamese: "mu/non", emoji: "🧢" },
-      { word: "socks", vietnamese: "tat/vo", emoji: "🧦" },
-      { word: "jacket", vietnamese: "ao khoac", emoji: "🧥" },
-      { word: "skirt", vietnamese: "chan vay", emoji: "👗" },
-      { word: "shorts", vietnamese: "quan dui", emoji: "🩳" },
-      { word: "glasses", vietnamese: "kinh mat", emoji: "👓" }
+      { word: "shirt", vietnamese: "áo sơ mi", emoji: "👔", ipa: "/ʃɜːt/" },
+      { word: "pants", vietnamese: "quần dài", emoji: "👖", ipa: "/pænts/" },
+      { word: "dress", vietnamese: "váy đầm", emoji: "👗", ipa: "/dres/" },
+      { word: "shoes", vietnamese: "giày", emoji: "👟", ipa: "/ʃuːz/" },
+      { word: "hat", vietnamese: "mũ/nón", emoji: "🧢", ipa: "/hæt/" },
+      { word: "socks", vietnamese: "tất/vớ", emoji: "🧦", ipa: "/sɒks/" },
+      { word: "jacket", vietnamese: "áo khoác", emoji: "🧥", ipa: "/ˈdʒækɪt/" },
+      { word: "skirt", vietnamese: "chân váy", emoji: "👗", ipa: "/skɜːt/" },
+      { word: "shorts", vietnamese: "quần đùi", emoji: "🩳", ipa: "/ʃɔːts/" },
+      { word: "glasses", vietnamese: "kính mắt", emoji: "👓", ipa: "/ˈɡlɑːsɪz/" }
     ]
   },
 
   weather: {
-    title: "Thoi Tiet",
+    title: "Thời Tiết",
     titleEn: "Weather",
     icon: "🌤️",
     words: [
-      { word: "sunny", vietnamese: "nang", emoji: "☀️" },
-      { word: "rainy", vietnamese: "mua", emoji: "🌧️" },
-      { word: "cloudy", vietnamese: "nhieu may", emoji: "☁️" },
-      { word: "windy", vietnamese: "gio", emoji: "💨" },
-      { word: "snowy", vietnamese: "tuyet", emoji: "❄️" },
-      { word: "hot", vietnamese: "nong", emoji: "🥵" },
-      { word: "cold", vietnamese: "lanh", emoji: "🥶" },
-      { word: "rainbow", vietnamese: "cau vong", emoji: "🌈" },
-      { word: "storm", vietnamese: "bao", emoji: "⛈️" },
-      { word: "thunder", vietnamese: "sam set", emoji: "🌩️" }
+      { word: "sunny", vietnamese: "nắng", emoji: "☀️", ipa: "/ˈsʌni/" },
+      { word: "rainy", vietnamese: "mưa", emoji: "🌧️", ipa: "/ˈreɪni/" },
+      { word: "cloudy", vietnamese: "nhiều mây", emoji: "☁️", ipa: "/ˈklaʊdi/" },
+      { word: "windy", vietnamese: "gió", emoji: "💨", ipa: "/ˈwɪndi/" },
+      { word: "snowy", vietnamese: "tuyết", emoji: "❄️", ipa: "/ˈsnəʊi/" },
+      { word: "hot", vietnamese: "nóng", emoji: "🥵", ipa: "/hɒt/" },
+      { word: "cold", vietnamese: "lạnh", emoji: "🥶", ipa: "/kəʊld/" },
+      { word: "rainbow", vietnamese: "cầu vồng", emoji: "🌈", ipa: "/ˈreɪnbəʊ/" },
+      { word: "storm", vietnamese: "bão", emoji: "⛈️", ipa: "/stɔːm/" },
+      { word: "thunder", vietnamese: "sấm sét", emoji: "🌩️", ipa: "/ˈθʌndə/" }
     ]
   },
 
   feelings: {
-    title: "Cam Xuc",
+    title: "Cảm Xúc",
     titleEn: "Feelings",
     icon: "😊",
     words: [
-      { word: "happy", vietnamese: "vui", emoji: "😊" },
-      { word: "sad", vietnamese: "buon", emoji: "😢" },
-      { word: "angry", vietnamese: "gian", emoji: "😠" },
-      { word: "tired", vietnamese: "met", emoji: "😫" },
-      { word: "scared", vietnamese: "so", emoji: "😨" },
-      { word: "hungry", vietnamese: "doi", emoji: "🤤" },
-      { word: "thirsty", vietnamese: "khat", emoji: "😋" },
-      { word: "excited", vietnamese: "phan khich", emoji: "🤩" },
-      { word: "sleepy", vietnamese: "buon ngu", emoji: "😴" },
-      { word: "sick", vietnamese: "om/benh", emoji: "🤒" }
+      { word: "happy", vietnamese: "vui", emoji: "😊", ipa: "/ˈhæpi/" },
+      { word: "sad", vietnamese: "buồn", emoji: "😢", ipa: "/sæd/" },
+      { word: "angry", vietnamese: "giận", emoji: "😠", ipa: "/ˈæŋɡri/" },
+      { word: "tired", vietnamese: "mệt", emoji: "😫", ipa: "/taɪəd/" },
+      { word: "scared", vietnamese: "sợ", emoji: "😨", ipa: "/skeəd/" },
+      { word: "hungry", vietnamese: "đói", emoji: "🤤", ipa: "/ˈhʌŋɡri/" },
+      { word: "thirsty", vietnamese: "khát", emoji: "😋", ipa: "/ˈθɜːsti/" },
+      { word: "excited", vietnamese: "phấn khích", emoji: "🤩", ipa: "/ɪkˈsaɪtɪd/" },
+      { word: "sleepy", vietnamese: "buồn ngủ", emoji: "😴", ipa: "/ˈsliːpi/" },
+      { word: "sick", vietnamese: "ốm/bệnh", emoji: "🤒", ipa: "/sɪk/" }
     ]
   },
 
   school: {
-    title: "Truong Hoc",
+    title: "Trường Học",
     titleEn: "School",
     icon: "🎒",
     words: [
-      { word: "book", vietnamese: "sach", emoji: "📚" },
-      { word: "pencil", vietnamese: "but chi", emoji: "✏️" },
-      { word: "pen", vietnamese: "but", emoji: "🖊️" },
-      { word: "eraser", vietnamese: "tay/gom", emoji: "🧽" },
-      { word: "ruler", vietnamese: "thuoc ke", emoji: "📏" },
-      { word: "bag", vietnamese: "cap/tui", emoji: "🎒" },
-      { word: "desk", vietnamese: "ban hoc", emoji: "🪑" },
-      { word: "chair", vietnamese: "ghe", emoji: "💺" },
-      { word: "teacher", vietnamese: "giao vien", emoji: "👩‍🏫" },
-      { word: "student", vietnamese: "hoc sinh", emoji: "👨‍🎓" }
+      { word: "book", vietnamese: "sách", emoji: "📚", ipa: "/bʊk/" },
+      { word: "pencil", vietnamese: "bút chì", emoji: "✏️", ipa: "/ˈpensl/" },
+      { word: "pen", vietnamese: "bút", emoji: "🖊️", ipa: "/pen/" },
+      { word: "eraser", vietnamese: "tẩy/gôm", emoji: "🧽", ipa: "/ɪˈreɪzə/" },
+      { word: "ruler", vietnamese: "thước kẻ", emoji: "📏", ipa: "/ˈruːlə/" },
+      { word: "bag", vietnamese: "cặp/túi", emoji: "🎒", ipa: "/bæɡ/" },
+      { word: "desk", vietnamese: "bàn học", emoji: "🪑", ipa: "/desk/" },
+      { word: "chair", vietnamese: "ghế", emoji: "💺", ipa: "/tʃeə/" },
+      { word: "teacher", vietnamese: "giáo viên", emoji: "👩‍🏫", ipa: "/ˈtiːtʃə/" },
+      { word: "student", vietnamese: "học sinh", emoji: "👨‍🎓", ipa: "/ˈstjuːdnt/" }
     ]
   },
 
   transport: {
-    title: "Phuong Tien",
+    title: "Phương Tiện",
     titleEn: "Transport",
     icon: "🚗",
     words: [
-      { word: "car", vietnamese: "o to", emoji: "🚗" },
-      { word: "bus", vietnamese: "xe buyt", emoji: "🚌" },
-      { word: "train", vietnamese: "tau hoa", emoji: "🚂" },
-      { word: "airplane", vietnamese: "may bay", emoji: "✈️" },
-      { word: "bicycle", vietnamese: "xe dap", emoji: "🚲" },
-      { word: "boat", vietnamese: "thuyen", emoji: "⛵" },
-      { word: "motorcycle", vietnamese: "xe may", emoji: "🏍️" },
-      { word: "truck", vietnamese: "xe tai", emoji: "🚚" },
-      { word: "helicopter", vietnamese: "truc thang", emoji: "🚁" },
-      { word: "ship", vietnamese: "tau thuy", emoji: "🚢" }
+      { word: "car", vietnamese: "ô tô", emoji: "🚗", ipa: "/kɑː/" },
+      { word: "bus", vietnamese: "xe buýt", emoji: "🚌", ipa: "/bʌs/" },
+      { word: "train", vietnamese: "tàu hỏa", emoji: "🚂", ipa: "/treɪn/" },
+      { word: "airplane", vietnamese: "máy bay", emoji: "✈️", ipa: "/ˈeəpleɪn/" },
+      { word: "bicycle", vietnamese: "xe đạp", emoji: "🚲", ipa: "/ˈbaɪsɪkl/" },
+      { word: "boat", vietnamese: "thuyền", emoji: "⛵", ipa: "/bəʊt/" },
+      { word: "motorcycle", vietnamese: "xe máy", emoji: "🏍️", ipa: "/ˈməʊtəsaɪkl/" },
+      { word: "truck", vietnamese: "xe tải", emoji: "🚚", ipa: "/trʌk/" },
+      { word: "helicopter", vietnamese: "trực thăng", emoji: "🚁", ipa: "/ˈhelɪkɒptə/" },
+      { word: "ship", vietnamese: "tàu thủy", emoji: "🚢", ipa: "/ʃɪp/" }
     ]
   },
 
   house: {
-    title: "Ngoi Nha",
+    title: "Ngôi Nhà",
     titleEn: "House",
     icon: "🏠",
     words: [
-      { word: "bedroom", vietnamese: "phong ngu", emoji: "🛏️" },
-      { word: "bathroom", vietnamese: "phong tam", emoji: "🚿" },
-      { word: "kitchen", vietnamese: "nha bep", emoji: "🍳" },
-      { word: "living room", vietnamese: "phong khach", emoji: "🛋️" },
-      { word: "door", vietnamese: "cua", emoji: "🚪" },
-      { word: "window", vietnamese: "cua so", emoji: "🪟" },
-      { word: "roof", vietnamese: "mai nha", emoji: "🏠" },
-      { word: "garden", vietnamese: "vuon", emoji: "🌷" },
-      { word: "stairs", vietnamese: "cau thang", emoji: "🪜" },
-      { word: "table", vietnamese: "ban", emoji: "🪑" }
+      { word: "bedroom", vietnamese: "phòng ngủ", emoji: "🛏️", ipa: "/ˈbedruːm/" },
+      { word: "bathroom", vietnamese: "phòng tắm", emoji: "🚿", ipa: "/ˈbɑːθruːm/" },
+      { word: "kitchen", vietnamese: "nhà bếp", emoji: "🍳", ipa: "/ˈkɪtʃɪn/" },
+      { word: "living room", vietnamese: "phòng khách", emoji: "🛋️", ipa: "/ˈlɪvɪŋ ruːm/" },
+      { word: "door", vietnamese: "cửa", emoji: "🚪", ipa: "/dɔː/" },
+      { word: "window", vietnamese: "cửa sổ", emoji: "🪟", ipa: "/ˈwɪndəʊ/" },
+      { word: "roof", vietnamese: "mái nhà", emoji: "🏠", ipa: "/ruːf/" },
+      { word: "garden", vietnamese: "vườn", emoji: "🌷", ipa: "/ˈɡɑːdn/" },
+      { word: "stairs", vietnamese: "cầu thang", emoji: "🪜", ipa: "/steəz/" },
+      { word: "table", vietnamese: "bàn", emoji: "🪑", ipa: "/ˈteɪbl/" }
     ]
   },
 
   days: {
-    title: "Ngay Thang",
+    title: "Ngày Tháng",
     titleEn: "Days & Months",
     icon: "📅",
     words: [
-      { word: "Monday", vietnamese: "thu hai", emoji: "1️⃣" },
-      { word: "Tuesday", vietnamese: "thu ba", emoji: "2️⃣" },
-      { word: "Wednesday", vietnamese: "thu tu", emoji: "3️⃣" },
-      { word: "Thursday", vietnamese: "thu nam", emoji: "4️⃣" },
-      { word: "Friday", vietnamese: "thu sau", emoji: "5️⃣" },
-      { word: "Saturday", vietnamese: "thu bay", emoji: "6️⃣" },
-      { word: "Sunday", vietnamese: "chu nhat", emoji: "7️⃣" },
-      { word: "today", vietnamese: "hom nay", emoji: "📆" },
-      { word: "tomorrow", vietnamese: "ngay mai", emoji: "➡️" },
-      { word: "yesterday", vietnamese: "hom qua", emoji: "⬅️" }
+      { word: "Monday", vietnamese: "thứ hai", emoji: "1️⃣", ipa: "/ˈmʌndeɪ/" },
+      { word: "Tuesday", vietnamese: "thứ ba", emoji: "2️⃣", ipa: "/ˈtjuːzdeɪ/" },
+      { word: "Wednesday", vietnamese: "thứ tư", emoji: "3️⃣", ipa: "/ˈwenzdeɪ/" },
+      { word: "Thursday", vietnamese: "thứ năm", emoji: "4️⃣", ipa: "/ˈθɜːzdeɪ/" },
+      { word: "Friday", vietnamese: "thứ sáu", emoji: "5️⃣", ipa: "/ˈfraɪdeɪ/" },
+      { word: "Saturday", vietnamese: "thứ bảy", emoji: "6️⃣", ipa: "/ˈsætədeɪ/" },
+      { word: "Sunday", vietnamese: "chủ nhật", emoji: "7️⃣", ipa: "/ˈsʌndeɪ/" },
+      { word: "today", vietnamese: "hôm nay", emoji: "📆", ipa: "/təˈdeɪ/" },
+      { word: "tomorrow", vietnamese: "ngày mai", emoji: "➡️", ipa: "/təˈmɒrəʊ/" },
+      { word: "yesterday", vietnamese: "hôm qua", emoji: "⬅️", ipa: "/ˈjestədeɪ/" }
     ]
   },
 
   shapes: {
-    title: "Hinh Dang",
+    title: "Hình Dạng",
     titleEn: "Shapes",
     icon: "🔷",
     words: [
-      { word: "circle", vietnamese: "hinh tron", emoji: "⭕" },
-      { word: "square", vietnamese: "hinh vuong", emoji: "🟦" },
-      { word: "triangle", vietnamese: "tam giac", emoji: "🔺" },
-      { word: "rectangle", vietnamese: "hinh chu nhat", emoji: "▬" },
-      { word: "star", vietnamese: "ngoi sao", emoji: "⭐" },
-      { word: "heart", vietnamese: "trai tim", emoji: "❤️" },
-      { word: "diamond", vietnamese: "hinh thoi", emoji: "💎" },
-      { word: "oval", vietnamese: "hinh bau duc", emoji: "🥚" },
-      { word: "cube", vietnamese: "hinh lap phuong", emoji: "🧊" },
-      { word: "sphere", vietnamese: "hinh cau", emoji: "🔮" }
+      { word: "circle", vietnamese: "hình tròn", emoji: "⭕", ipa: "/ˈsɜːkl/" },
+      { word: "square", vietnamese: "hình vuông", emoji: "🟦", ipa: "/skweə/" },
+      { word: "triangle", vietnamese: "tam giác", emoji: "🔺", ipa: "/ˈtraɪæŋɡl/" },
+      { word: "rectangle", vietnamese: "hình chữ nhật", emoji: "▬", ipa: "/ˈrektæŋɡl/" },
+      { word: "star", vietnamese: "ngôi sao", emoji: "⭐", ipa: "/stɑː/" },
+      { word: "heart", vietnamese: "trái tim", emoji: "❤️", ipa: "/hɑːt/" },
+      { word: "diamond", vietnamese: "hình thoi", emoji: "💎", ipa: "/ˈdaɪəmənd/" },
+      { word: "oval", vietnamese: "hình bầu dục", emoji: "🥚", ipa: "/ˈəʊvl/" },
+      { word: "cube", vietnamese: "hình lập phương", emoji: "🧊", ipa: "/kjuːb/" },
+      { word: "sphere", vietnamese: "hình cầu", emoji: "🔮", ipa: "/sfɪə/" }
     ]
   },
 
   toys: {
-    title: "Do Choi",
+    title: "Đồ Chơi",
     titleEn: "Toys",
     icon: "🧸",
     words: [
-      { word: "ball", vietnamese: "qua bong", emoji: "⚽" },
-      { word: "doll", vietnamese: "bup be", emoji: "🪆" },
-      { word: "teddy bear", vietnamese: "gau bong", emoji: "🧸" },
-      { word: "robot", vietnamese: "nguoi may", emoji: "🤖" },
-      { word: "blocks", vietnamese: "khoi xep hinh", emoji: "🧱" },
-      { word: "puzzle", vietnamese: "xep hinh", emoji: "🧩" },
-      { word: "kite", vietnamese: "dieu", emoji: "🪁" },
-      { word: "balloon", vietnamese: "bong bay", emoji: "🎈" },
-      { word: "drum", vietnamese: "trong", emoji: "🥁" },
-      { word: "train", vietnamese: "tau hoa do choi", emoji: "🚂" }
+      { word: "ball", vietnamese: "quả bóng", emoji: "⚽", ipa: "/bɔːl/" },
+      { word: "doll", vietnamese: "búp bê", emoji: "🪆", ipa: "/dɒl/" },
+      { word: "teddy bear", vietnamese: "gấu bông", emoji: "🧸", ipa: "/ˈtedi beə/" },
+      { word: "robot", vietnamese: "người máy", emoji: "🤖", ipa: "/ˈrəʊbɒt/" },
+      { word: "blocks", vietnamese: "khối xếp hình", emoji: "🧱", ipa: "/blɒks/" },
+      { word: "puzzle", vietnamese: "xếp hình", emoji: "🧩", ipa: "/ˈpʌzl/" },
+      { word: "kite", vietnamese: "diều", emoji: "🪁", ipa: "/kaɪt/" },
+      { word: "balloon", vietnamese: "bóng bay", emoji: "🎈", ipa: "/bəˈluːn/" },
+      { word: "drum", vietnamese: "trống", emoji: "🥁", ipa: "/drʌm/" },
+      { word: "train", vietnamese: "tàu hỏa đồ chơi", emoji: "🚂", ipa: "/treɪn/" }
     ]
   },
 
   verbs: {
-    title: "Dong Tu",
+    title: "Động Từ",
     titleEn: "Action Verbs",
     icon: "🏃",
     words: [
-      { word: "run", vietnamese: "chay", emoji: "🏃" },
-      { word: "walk", vietnamese: "di bo", emoji: "🚶" },
-      { word: "jump", vietnamese: "nhay", emoji: "🦘" },
-      { word: "eat", vietnamese: "an", emoji: "🍽️" },
-      { word: "drink", vietnamese: "uong", emoji: "🥤" },
-      { word: "sleep", vietnamese: "ngu", emoji: "😴" },
-      { word: "read", vietnamese: "doc", emoji: "📖" },
-      { word: "write", vietnamese: "viet", emoji: "✍️" },
-      { word: "play", vietnamese: "choi", emoji: "🎮" },
-      { word: "sing", vietnamese: "hat", emoji: "🎤" }
+      { word: "run", vietnamese: "chạy", emoji: "🏃", ipa: "/rʌn/" },
+      { word: "walk", vietnamese: "đi bộ", emoji: "🚶", ipa: "/wɔːk/" },
+      { word: "jump", vietnamese: "nhảy", emoji: "🦘", ipa: "/dʒʌmp/" },
+      { word: "eat", vietnamese: "ăn", emoji: "🍽️", ipa: "/iːt/" },
+      { word: "drink", vietnamese: "uống", emoji: "🥤", ipa: "/drɪŋk/" },
+      { word: "sleep", vietnamese: "ngủ", emoji: "😴", ipa: "/sliːp/" },
+      { word: "read", vietnamese: "đọc", emoji: "📖", ipa: "/riːd/" },
+      { word: "write", vietnamese: "viết", emoji: "✍️", ipa: "/raɪt/" },
+      { word: "play", vietnamese: "chơi", emoji: "🎮", ipa: "/pleɪ/" },
+      { word: "sing", vietnamese: "hát", emoji: "🎤", ipa: "/sɪŋ/" }
     ]
   },
 
   nature: {
-    title: "Thien Nhien",
+    title: "Thiên Nhiên",
     titleEn: "Nature",
     icon: "🌳",
     words: [
-      { word: "tree", vietnamese: "cay", emoji: "🌳" },
-      { word: "flower", vietnamese: "hoa", emoji: "🌸" },
-      { word: "grass", vietnamese: "co", emoji: "🌿" },
-      { word: "sun", vietnamese: "mat troi", emoji: "☀️" },
-      { word: "moon", vietnamese: "mat trang", emoji: "🌙" },
-      { word: "star", vietnamese: "ngoi sao", emoji: "⭐" },
-      { word: "cloud", vietnamese: "may", emoji: "☁️" },
-      { word: "river", vietnamese: "song", emoji: "🏞️" },
-      { word: "mountain", vietnamese: "nui", emoji: "🏔️" },
-      { word: "sea", vietnamese: "bien", emoji: "🌊" }
+      { word: "tree", vietnamese: "cây", emoji: "🌳", ipa: "/triː/" },
+      { word: "flower", vietnamese: "hoa", emoji: "🌸", ipa: "/ˈflaʊə/" },
+      { word: "grass", vietnamese: "cỏ", emoji: "🌿", ipa: "/ɡrɑːs/" },
+      { word: "sun", vietnamese: "mặt trời", emoji: "☀️", ipa: "/sʌn/" },
+      { word: "moon", vietnamese: "mặt trăng", emoji: "🌙", ipa: "/muːn/" },
+      { word: "star", vietnamese: "ngôi sao", emoji: "⭐", ipa: "/stɑː/" },
+      { word: "cloud", vietnamese: "mây", emoji: "☁️", ipa: "/klaʊd/" },
+      { word: "river", vietnamese: "sông", emoji: "🏞️", ipa: "/ˈrɪvə/" },
+      { word: "mountain", vietnamese: "núi", emoji: "🏔️", ipa: "/ˈmaʊntɪn/" },
+      { word: "sea", vietnamese: "biển", emoji: "🌊", ipa: "/siː/" }
+    ]
+  },
+
+  // ========== NEW CONTENT EXPANSION ==========
+
+  sports: {
+    title: "Thể Thao",
+    titleEn: "Sports",
+    icon: "⚽",
+    words: [
+      { word: "soccer", vietnamese: "bóng đá", emoji: "⚽", ipa: "/ˈsɒkə/" },
+      { word: "basketball", vietnamese: "bóng rổ", emoji: "🏀", ipa: "/ˈbɑːskɪtbɔːl/" },
+      { word: "swimming", vietnamese: "bơi lội", emoji: "🏊", ipa: "/ˈswɪmɪŋ/" },
+      { word: "tennis", vietnamese: "quần vợt", emoji: "🎾", ipa: "/ˈtenɪs/" },
+      { word: "badminton", vietnamese: "cầu lông", emoji: "🏸", ipa: "/ˈbædmɪntən/" },
+      { word: "running", vietnamese: "chạy bộ", emoji: "🏃", ipa: "/ˈrʌnɪŋ/" },
+      { word: "cycling", vietnamese: "đạp xe", emoji: "🚴", ipa: "/ˈsaɪklɪŋ/" },
+      { word: "volleyball", vietnamese: "bóng chuyền", emoji: "🏐", ipa: "/ˈvɒlibɔːl/" },
+      { word: "skating", vietnamese: "trượt băng", emoji: "⛸️", ipa: "/ˈskeɪtɪŋ/" },
+      { word: "gymnastics", vietnamese: "thể dục", emoji: "🤸", ipa: "/dʒɪmˈnæstɪks/" }
+    ]
+  },
+
+  jobs: {
+    title: "Nghề Nghiệp",
+    titleEn: "Jobs",
+    icon: "👨‍💼",
+    words: [
+      { word: "doctor", vietnamese: "bác sĩ", emoji: "👨‍⚕️", ipa: "/ˈdɒktə/" },
+      { word: "nurse", vietnamese: "y tá", emoji: "👩‍⚕️", ipa: "/nɜːs/" },
+      { word: "teacher", vietnamese: "giáo viên", emoji: "👩‍🏫", ipa: "/ˈtiːtʃə/" },
+      { word: "police", vietnamese: "cảnh sát", emoji: "👮", ipa: "/pəˈliːs/" },
+      { word: "firefighter", vietnamese: "lính cứu hỏa", emoji: "👨‍🚒", ipa: "/ˈfaɪəfaɪtə/" },
+      { word: "chef", vietnamese: "đầu bếp", emoji: "👨‍🍳", ipa: "/ʃef/" },
+      { word: "farmer", vietnamese: "nông dân", emoji: "👨‍🌾", ipa: "/ˈfɑːmə/" },
+      { word: "pilot", vietnamese: "phi công", emoji: "👨‍✈️", ipa: "/ˈpaɪlət/" },
+      { word: "artist", vietnamese: "họa sĩ", emoji: "👨‍🎨", ipa: "/ˈɑːtɪst/" },
+      { word: "singer", vietnamese: "ca sĩ", emoji: "🎤", ipa: "/ˈsɪŋə/" }
+    ]
+  },
+
+  adjectives: {
+    title: "Tính Từ",
+    titleEn: "Adjectives",
+    icon: "📝",
+    words: [
+      { word: "big", vietnamese: "to/lớn", emoji: "🐘", ipa: "/bɪɡ/" },
+      { word: "small", vietnamese: "nhỏ", emoji: "🐜", ipa: "/smɔːl/" },
+      { word: "fast", vietnamese: "nhanh", emoji: "🚀", ipa: "/fɑːst/" },
+      { word: "slow", vietnamese: "chậm", emoji: "🐢", ipa: "/sləʊ/" },
+      { word: "tall", vietnamese: "cao", emoji: "🦒", ipa: "/tɔːl/" },
+      { word: "short", vietnamese: "thấp/ngắn", emoji: "🐁", ipa: "/ʃɔːt/" },
+      { word: "heavy", vietnamese: "nặng", emoji: "🏋️", ipa: "/ˈhevi/" },
+      { word: "light", vietnamese: "nhẹ", emoji: "🪶", ipa: "/laɪt/" },
+      { word: "beautiful", vietnamese: "đẹp", emoji: "🌹", ipa: "/ˈbjuːtɪfl/" },
+      { word: "cute", vietnamese: "dễ thương", emoji: "🐰", ipa: "/kjuːt/" }
+    ]
+  },
+
+  seasons: {
+    title: "Mùa",
+    titleEn: "Seasons",
+    icon: "🌸",
+    words: [
+      { word: "spring", vietnamese: "mùa xuân", emoji: "🌸", ipa: "/sprɪŋ/" },
+      { word: "summer", vietnamese: "mùa hè", emoji: "☀️", ipa: "/ˈsʌmə/" },
+      { word: "autumn", vietnamese: "mùa thu", emoji: "🍂", ipa: "/ˈɔːtəm/" },
+      { word: "winter", vietnamese: "mùa đông", emoji: "❄️", ipa: "/ˈwɪntə/" },
+      { word: "warm", vietnamese: "ấm áp", emoji: "🌤️", ipa: "/wɔːm/" },
+      { word: "cool", vietnamese: "mát mẻ", emoji: "🌬️", ipa: "/kuːl/" },
+      { word: "leaves", vietnamese: "lá cây", emoji: "🍃", ipa: "/liːvz/" },
+      { word: "snow", vietnamese: "tuyết", emoji: "🌨️", ipa: "/snəʊ/" },
+      { word: "beach", vietnamese: "bãi biển", emoji: "🏖️", ipa: "/biːtʃ/" },
+      { word: "holiday", vietnamese: "kỳ nghỉ", emoji: "🎄", ipa: "/ˈhɒlədeɪ/" }
+    ]
+  },
+
+  phrases: {
+    title: "Câu Giao Tiếp",
+    titleEn: "Basic Phrases",
+    icon: "💬",
+    words: [
+      { word: "Hello!", vietnamese: "Xin chào!", emoji: "👋", ipa: "/həˈləʊ/" },
+      { word: "Goodbye!", vietnamese: "Tạm biệt!", emoji: "👋", ipa: "/ɡʊdˈbaɪ/" },
+      { word: "Thank you!", vietnamese: "Cảm ơn!", emoji: "🙏", ipa: "/θæŋk juː/" },
+      { word: "Please", vietnamese: "Làm ơn", emoji: "🙏", ipa: "/pliːz/" },
+      { word: "Sorry", vietnamese: "Xin lỗi", emoji: "😔", ipa: "/ˈsɒri/" },
+      { word: "Yes", vietnamese: "Vâng/Có", emoji: "✅", ipa: "/jes/" },
+      { word: "No", vietnamese: "Không", emoji: "❌", ipa: "/nəʊ/" },
+      { word: "How are you?", vietnamese: "Bạn khỏe không?", emoji: "😊", ipa: "/haʊ ɑː juː/" },
+      { word: "I love you", vietnamese: "Con yêu mẹ/bố", emoji: "❤️", ipa: "/aɪ lʌv juː/" },
+      { word: "Good morning!", vietnamese: "Chào buổi sáng!", emoji: "🌅", ipa: "/ɡʊd ˈmɔːnɪŋ/" }
     ]
   }
 };
@@ -327,56 +419,56 @@ const songsData = [
   {
     id: 1,
     title: "ABC Song",
-    description: "Hoc bang chu cai tieng Anh",
+    description: "Học bảng chữ cái tiếng Anh",
     thumbnail: "🔤",
     youtubeId: "75p-N9YKqNo"
   },
   {
     id: 2,
     title: "Twinkle Twinkle Little Star",
-    description: "Bai hat ve ngoi sao lap lanh",
+    description: "Bài hát về ngôi sao lấp lánh",
     thumbnail: "⭐",
     youtubeId: "yCjJyiqpAuU"
   },
   {
     id: 3,
     title: "Baby Shark",
-    description: "Bai hat vui nhon ve ca map",
+    description: "Bài hát vui nhộn về cá mập",
     thumbnail: "🦈",
     youtubeId: "XqZsoesa55w"
   },
   {
     id: 4,
     title: "Head Shoulders Knees and Toes",
-    description: "Hoc cac bo phan co the",
+    description: "Học các bộ phận cơ thể",
     thumbnail: "🧍",
     youtubeId: "h4eueDYPTIg"
   },
   {
     id: 5,
     title: "Old MacDonald Had a Farm",
-    description: "Bai hat ve nong trai va dong vat",
+    description: "Bài hát về nông trại và động vật",
     thumbnail: "🚜",
     youtubeId: "5oYKonYBujg"
   },
   {
     id: 6,
     title: "If You're Happy and You Know It",
-    description: "Bai hat vui ve",
+    description: "Bài hát vui vẻ",
     thumbnail: "😊",
     youtubeId: "l4WNrvVjiTw"
   },
   {
     id: 7,
     title: "Wheels on the Bus",
-    description: "Bai hat ve xe bus",
+    description: "Bài hát về xe buýt",
     thumbnail: "🚌",
     youtubeId: "e_04ZrNroTo"
   },
   {
     id: 8,
     title: "Five Little Ducks",
-    description: "Hoc dem voi nhung chu vit con",
+    description: "Học đếm với những chú vịt con",
     thumbnail: "🦆",
     youtubeId: "pZw9veQ76fo"
   }

@@ -16,8 +16,13 @@
   <header>
     <div class="header-content">
       <div class="logo">🚀 English Fun</div>
-      <div class="score-display">
-        ⭐ Điểm: <span id="total-score">0</span>
+      <div class="header-stats">
+        <div class="streak-display">
+          🔥 <span id="streak-count">0</span>
+        </div>
+        <div class="score-display">
+          ⭐ <span id="total-score">0</span>
+        </div>
       </div>
     </div>
   </header>
@@ -91,6 +96,12 @@
         <button class="category-btn" data-category="feelings">😊 Cảm Xúc</button>
         <button class="category-btn" data-category="school">🎒 Trường Học</button>
         <button class="category-btn" data-category="transport">🚗 Phương Tiện</button>
+        <!-- Row 3 - New categories -->
+        <button class="category-btn" data-category="sports">⚽ Thể Thao</button>
+        <button class="category-btn" data-category="jobs">👨‍💼 Nghề Nghiệp</button>
+        <button class="category-btn" data-category="adjectives">📝 Tính Từ</button>
+        <button class="category-btn" data-category="seasons">🌸 Mùa</button>
+        <button class="category-btn" data-category="phrases">💬 Giao Tiếp</button>
       </div>
 
       <div id="flashcard-container" class="flashcard-grid">
@@ -111,54 +122,121 @@
     <section id="games" class="section">
       <h2 class="section-title">🎮 Thử Thách Thông Thái</h2>
 
+      <!-- Game Mode Tabs -->
+      <div class="game-mode-tabs">
+        <button class="game-tab active" data-mode="quiz">🎯 Quiz</button>
+        <button class="game-tab" data-mode="spelling">✏️ Spelling</button>
+      </div>
+
       <div class="category-selector">
         <button class="quiz-category-btn category-btn active" data-category="animals">🐾 Động Vật</button>
         <button class="quiz-category-btn category-btn" data-category="colors">🎨 Màu Sắc</button>
         <button class="quiz-category-btn category-btn" data-category="numbers">🔢 Số Đếm</button>
         <button class="quiz-category-btn category-btn" data-category="fruits">🍎 Trái Cây</button>
         <button class="quiz-category-btn category-btn" data-category="food">🍔 Đồ Ăn</button>
+        <button class="quiz-category-btn category-btn" data-category="family">👨‍👩‍👧‍👦 Gia Đình</button>
+        <button class="quiz-category-btn category-btn" data-category="sports">⚽ Thể Thao</button>
+        <button class="quiz-category-btn category-btn" data-category="jobs">👨‍💼 Nghề Nghiệp</button>
+        <button class="quiz-category-btn category-btn" data-category="adjectives">📝 Tính Từ</button>
+        <button class="quiz-category-btn category-btn" data-category="phrases">💬 Giao Tiếp</button>
       </div>
 
-      <div id="start-quiz-container" class="start-quiz-container">
-        <div class="feature-card" style="max-width: 400px; margin: 0 auto; cursor: default;">
-          <div class="icon">🚀</div>
-          <h3>Sẵn sàng chưa?</h3>
-          <p>Bé hãy chọn chủ đề và ấn bắt đầu để nhận điểm thưởng nhé!</p>
-          <button id="start-quiz-btn" class="nav-btn active"
-            style="margin: 20px auto; display: block; padding: 15px 30px;">
-            Bắt Đầu Quiz!
-          </button>
+      <!-- ========== QUIZ GAME ========== -->
+      <div id="quiz-game">
+        <div id="start-quiz-container" class="start-quiz-container">
+          <div class="feature-card" style="max-width: 400px; margin: 0 auto; cursor: default;">
+            <div class="icon">🚀</div>
+            <h3>Sẵn sàng chưa?</h3>
+            <p>Bé hãy chọn chủ đề và ấn bắt đầu để nhận điểm thưởng nhé!</p>
+            <button id="start-quiz-btn" class="nav-btn active"
+              style="margin: 20px auto; display: block; padding: 15px 30px;">
+              Bắt Đầu Quiz!
+            </button>
+          </div>
+        </div>
+
+        <!-- Quiz Container -->
+        <div id="quiz-container" class="quiz-container" style="display: none;">
+          <div class="quiz-progress">
+            <span class="question-num" id="question-num">1/5</span>
+            <span class="quiz-score">⭐ <span id="quiz-score">0</span></span>
+          </div>
+
+          <div class="quiz-question">
+            <span class="emoji" id="question-emoji">🐕</span>
+            <p style="font-size: 1.5rem; font-weight: 700;">Đây là gì nhỉ?</p>
+          </div>
+
+          <div id="quiz-options" class="quiz-options">
+            <!-- Options will be rendered here -->
+          </div>
+        </div>
+
+        <!-- Quiz Result -->
+        <div id="quiz-result" class="quiz-result" style="display: none;">
+          <div class="quiz-container">
+            <div class="result-emoji" id="result-emoji" style="font-size: 5rem;">🎉</div>
+            <h3 id="result-message" style="margin: 20px 0;">Tuyệt vời!</h3>
+            <p style="font-size: 1.4rem;">Điểm của bé: <strong id="final-score"
+                style="color: var(--primary);">5/5</strong></p>
+            <div class="stars" id="stars-container" style="font-size: 3rem; margin: 20px 0;">⭐⭐⭐</div>
+            <button class="nav-btn active" onclick="restartQuiz()" style="margin: 0 auto;">
+              🔄 Chơi Lại
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- Quiz Container -->
-      <div id="quiz-container" class="quiz-container" style="display: none;">
-        <div class="quiz-progress">
-          <span class="question-num" id="question-num">1/5</span>
-          <span class="quiz-score">⭐ <span id="quiz-score">0</span></span>
+      <!-- ========== SPELLING GAME ========== -->
+      <div id="spelling-game" style="display: none;">
+        <!-- Spelling Start -->
+        <div id="start-spelling-container" class="start-quiz-container">
+          <div class="feature-card" style="max-width: 400px; margin: 0 auto; cursor: default;">
+            <div class="icon">✏️</div>
+            <h3>Luyện Viết Từ!</h3>
+            <p>Nghe phát âm, nhìn emoji và gõ từ tiếng Anh. Mỗi từ đúng +15 điểm!</p>
+            <button id="start-spelling-btn" class="nav-btn active"
+              style="margin: 20px auto; display: block; padding: 15px 30px;">
+              Bắt Đầu Spelling!
+            </button>
+          </div>
         </div>
 
-        <div class="quiz-question">
-          <span class="emoji" id="question-emoji">🐕</span>
-          <p style="font-size: 1.5rem; font-weight: 700;">Đây là gì nhỉ?</p>
+        <!-- Spelling Container -->
+        <div id="spelling-container" class="quiz-container" style="display: none;">
+          <div class="quiz-progress">
+            <span class="question-num" id="spelling-num">1/5</span>
+            <span class="quiz-score">⭐ <span id="spelling-score">0</span></span>
+          </div>
+
+          <div class="spelling-question">
+            <span class="emoji" id="spelling-emoji">🐕</span>
+            <button class="hint-btn" id="hint-btn" title="Nghe phát âm">🔊 Nghe</button>
+            <button class="hint-btn hint-vn" id="hint-vn-btn" title="Xem gợi ý tiếng Việt">💡 Gợi ý</button>
+            <p class="hint-text" id="hint-text" style="display: none;"></p>
+          </div>
+
+          <div class="spelling-input-container">
+            <input type="text" id="spelling-input" class="spelling-input"
+                   placeholder="Gõ từ tiếng Anh..." autocomplete="off" autocapitalize="off">
+            <button id="check-spelling-btn" class="nav-btn active">Kiểm Tra</button>
+          </div>
+
+          <div id="spelling-feedback" class="spelling-feedback"></div>
         </div>
 
-        <div id="quiz-options" class="quiz-options">
-          <!-- Options will be rendered here -->
-        </div>
-      </div>
-
-      <!-- Quiz Result -->
-      <div id="quiz-result" class="quiz-result" style="display: none;">
-        <div class="quiz-container">
-          <div class="result-emoji" id="result-emoji" style="font-size: 5rem;">🎉</div>
-          <h3 id="result-message" style="margin: 20px 0;">Tuyệt vời!</h3>
-          <p style="font-size: 1.4rem;">Điểm của bé: <strong id="final-score"
-              style="color: var(--primary);">5/5</strong></p>
-          <div class="stars" id="stars-container" style="font-size: 3rem; margin: 20px 0;">⭐⭐⭐</div>
-          <button class="nav-btn active" onclick="restartQuiz()" style="margin: 0 auto;">
-            🔄 Chơi Lại
-          </button>
+        <!-- Spelling Result -->
+        <div id="spelling-result" class="quiz-result" style="display: none;">
+          <div class="quiz-container">
+            <div class="result-emoji" id="spelling-result-emoji" style="font-size: 5rem;">🎉</div>
+            <h3 id="spelling-result-message" style="margin: 20px 0;">Tuyệt vời!</h3>
+            <p style="font-size: 1.4rem;">Điểm của bé: <strong id="spelling-final-score"
+                style="color: var(--primary);">5/5</strong></p>
+            <div class="stars" id="spelling-stars-container" style="font-size: 3rem; margin: 20px 0;">⭐⭐⭐</div>
+            <button class="nav-btn active" onclick="restartSpelling()" style="margin: 0 auto;">
+              🔄 Chơi Lại
+            </button>
+          </div>
         </div>
       </div>
     </section>

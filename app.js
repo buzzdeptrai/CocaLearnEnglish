@@ -9,6 +9,21 @@ let currentQuestionIndex = 0;
 let quizQuestions = [];
 let isQuizActive = false;
 
+// Streak state
+let streakData = {
+  current: 0,
+  longest: 0,
+  lastPlayDate: null
+};
+
+// Spelling game state
+let spellingQuestions = [];
+let spellingScore = 0;
+let currentSpellingIndex = 0;
+let isSpellingActive = false;
+let currentGameMode = 'quiz'; // 'quiz' or 'spelling'
+let usedHint = false;
+
 // Audio cache for pronunciation
 const audioCache = new Map();
 let currentAudio = null;
@@ -21,6 +36,7 @@ const scoreDisplay = document.getElementById('total-score');
 // Initialize app
 document.addEventListener('DOMContentLoaded', () => {
   loadScore();
+  loadStreak();
   renderVocabulary(currentCategory);
   renderSongs();
   setupEventListeners();
@@ -69,21 +85,117 @@ function addPoints(points) {
   saveScore();
 }
 
+// ========== STREAK SYSTEM ==========
+
+// Load streak from localStorage
+function loadStreak() {
+  const saved = localStorage.getItem('englishAppStreak');
+  if (saved) {
+    streakData = JSON.parse(saved);
+  }
+  checkStreakStatus();
+  updateStreakDisplay();
+}
+
+// Save streak to localStorage
+function saveStreak() {
+  localStorage.setItem('englishAppStreak', JSON.stringify(streakData));
+}
+
+// Check and update streak based on date
+function checkStreakStatus() {
+  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+
+  if (!streakData.lastPlayDate) {
+    // First time user
+    return;
+  }
+
+  const lastDate = new Date(streakData.lastPlayDate);
+  const todayDate = new Date(today);
+  const diffTime = todayDate - lastDate;
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+  if (diffDays === 0) {
+    // Same day - do nothing
+  } else if (diffDays === 1) {
+    // Consecutive day - streak continues (will be incremented on activity)
+  } else if (diffDays > 1) {
+    // Streak broken - reset
+    streakData.current = 0;
+    saveStreak();
+  }
+}
+
+// Record activity and update streak
+function recordActivity() {
+  const today = new Date().toISOString().split('T')[0];
+
+  if (streakData.lastPlayDate === today) {
+    // Already played today
+    return;
+  }
+
+  const lastDate = streakData.lastPlayDate ? new Date(streakData.lastPlayDate) : null;
+  const todayDate = new Date(today);
+
+  if (!lastDate) {
+    // First time ever
+    streakData.current = 1;
+  } else {
+    const diffTime = todayDate - lastDate;
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+    if (diffDays === 1) {
+      // Consecutive day
+      streakData.current++;
+    } else {
+      // Streak was broken, start fresh
+      streakData.current = 1;
+    }
+  }
+
+  // Update longest streak
+  if (streakData.current > streakData.longest) {
+    streakData.longest = streakData.current;
+  }
+
+  streakData.lastPlayDate = today;
+  saveStreak();
+  updateStreakDisplay();
+}
+
+// Update streak display in header
+function updateStreakDisplay() {
+  const streakEl = document.getElementById('streak-count');
+  if (streakEl) {
+    streakEl.textContent = streakData.current;
+
+    // Add fire animation for high streaks
+    const container = streakEl.closest('.streak-display');
+    if (container) {
+      container.classList.toggle('hot', streakData.current >= 7);
+    }
+  }
+}
+
 // Setup event listeners
 function setupEventListeners() {
-  // Navigation buttons
-  navButtons.forEach(btn => {
+  // Navigation buttons (only ones with data-section in nav)
+  document.querySelectorAll('nav .nav-btn[data-section]').forEach(btn => {
     btn.addEventListener('click', () => {
       const target = btn.dataset.section;
       switchSection(target);
     });
   });
 
-  // Feature cards on home
-  document.querySelectorAll('.feature-card').forEach(card => {
+  // Feature cards on home (only cards with data-section attribute)
+  document.querySelectorAll('.feature-card[data-section]').forEach(card => {
     card.addEventListener('click', () => {
       const target = card.dataset.section;
-      switchSection(target);
+      if (target) {
+        switchSection(target);
+      }
     });
   });
 
@@ -117,7 +229,10 @@ function setupEventListeners() {
   // Start quiz button
   const startQuizBtn = document.getElementById('start-quiz-btn');
   if (startQuizBtn) {
-    startQuizBtn.addEventListener('click', startQuiz);
+    startQuizBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      startQuiz();
+    });
   }
 
   // Quiz category selector
@@ -127,6 +242,49 @@ function setupEventListeners() {
       btn.classList.add('active');
     });
   });
+
+  // Game mode tabs
+  document.querySelectorAll('.game-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const mode = tab.dataset.mode;
+      switchGameMode(mode);
+    });
+  });
+
+  // Spelling game buttons
+  const startSpellingBtn = document.getElementById('start-spelling-btn');
+  if (startSpellingBtn) {
+    startSpellingBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      startSpelling();
+    });
+  }
+
+  const checkSpellingBtn = document.getElementById('check-spelling-btn');
+  if (checkSpellingBtn) {
+    checkSpellingBtn.addEventListener('click', checkSpelling);
+  }
+
+  // Spelling input - Enter key
+  const spellingInput = document.getElementById('spelling-input');
+  if (spellingInput) {
+    spellingInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        checkSpelling();
+      }
+    });
+  }
+
+  // Hint buttons
+  const hintBtn = document.getElementById('hint-btn');
+  if (hintBtn) {
+    hintBtn.addEventListener('click', playSpellingAudio);
+  }
+
+  const hintVnBtn = document.getElementById('hint-vn-btn');
+  if (hintVnBtn) {
+    hintVnBtn.addEventListener('click', showVietnameseHint);
+  }
 }
 
 // Switch sections
@@ -173,6 +331,7 @@ function renderVocabulary(category) {
       <span class="speak-icon">🔊</span>
       <span class="emoji">${item.emoji}</span>
       <div class="word">${item.word}</div>
+      ${item.ipa ? `<div class="ipa">${item.ipa}</div>` : ''}
       <div class="vietnamese">${item.vietnamese}</div>
     `;
 
@@ -412,6 +571,9 @@ function showQuizResult() {
   document.getElementById('quiz-container').style.display = 'none';
   document.getElementById('quiz-result').style.display = 'block';
 
+  // Record activity for streak
+  recordActivity();
+
   const resultEmoji = document.getElementById('result-emoji');
   const resultMessage = document.getElementById('result-message');
   const finalScore = document.getElementById('final-score');
@@ -489,4 +651,215 @@ if ('speechSynthesis' in window) {
   speechSynthesis.onvoiceschanged = () => {
     speechSynthesis.getVoices();
   };
+}
+
+// ========== GAME MODE SWITCHING ==========
+
+function switchGameMode(mode) {
+  currentGameMode = mode;
+
+  // Update tabs
+  document.querySelectorAll('.game-tab').forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.mode === mode);
+  });
+
+  // Show/hide game containers
+  const quizGame = document.getElementById('quiz-game');
+  const spellingGame = document.getElementById('spelling-game');
+
+  if (mode === 'quiz') {
+    quizGame.style.display = 'block';
+    spellingGame.style.display = 'none';
+    if (isSpellingActive) resetSpelling();
+  } else {
+    quizGame.style.display = 'none';
+    spellingGame.style.display = 'block';
+    if (isQuizActive) resetQuiz();
+  }
+}
+
+// ========== SPELLING GAME ==========
+
+function generateSpellingQuestions(category, count) {
+  const categoryData = vocabularyData[category];
+  if (!categoryData) return [];
+
+  // Shuffle and pick words
+  const shuffled = [...categoryData.words].sort(() => Math.random() - 0.5);
+  const selected = shuffled.slice(0, Math.min(count, shuffled.length));
+
+  return selected.map(word => ({
+    emoji: word.emoji,
+    word: word.word.toLowerCase(),
+    vietnamese: word.vietnamese,
+    ipa: word.ipa || ''
+  }));
+}
+
+function startSpelling() {
+  const activeCategory = document.querySelector('.quiz-category-btn.active');
+  const category = activeCategory ? activeCategory.dataset.category : 'animals';
+
+  spellingQuestions = generateSpellingQuestions(category, 5);
+  spellingScore = 0;
+  currentSpellingIndex = 0;
+  isSpellingActive = true;
+  usedHint = false;
+
+  document.getElementById('start-spelling-container').style.display = 'none';
+  document.getElementById('spelling-container').style.display = 'block';
+  document.getElementById('spelling-result').style.display = 'none';
+
+  showSpellingQuestion();
+}
+
+function showSpellingQuestion() {
+  if (currentSpellingIndex >= spellingQuestions.length) {
+    showSpellingResult();
+    return;
+  }
+
+  const question = spellingQuestions[currentSpellingIndex];
+
+  // Update progress
+  document.getElementById('spelling-num').textContent =
+    `${currentSpellingIndex + 1}/${spellingQuestions.length}`;
+  document.getElementById('spelling-score').textContent = spellingScore;
+
+  // Show emoji
+  document.getElementById('spelling-emoji').textContent = question.emoji;
+
+  // Reset input and feedback
+  const input = document.getElementById('spelling-input');
+  input.value = '';
+  input.disabled = false;
+  input.focus();
+
+  document.getElementById('spelling-feedback').innerHTML = '';
+  document.getElementById('spelling-feedback').className = 'spelling-feedback';
+
+  // Reset hint
+  usedHint = false;
+  document.getElementById('hint-text').style.display = 'none';
+  document.getElementById('hint-vn-btn').disabled = false;
+
+  // Auto-play audio
+  setTimeout(() => playSpellingAudio(), 300);
+}
+
+function playSpellingAudio() {
+  if (currentSpellingIndex < spellingQuestions.length) {
+    const question = spellingQuestions[currentSpellingIndex];
+    speakWord(question.word);
+  }
+}
+
+function showVietnameseHint() {
+  if (currentSpellingIndex < spellingQuestions.length) {
+    const question = spellingQuestions[currentSpellingIndex];
+    const hintText = document.getElementById('hint-text');
+    hintText.textContent = `💡 ${question.vietnamese}`;
+    hintText.style.display = 'block';
+    usedHint = true;
+
+    // Disable hint button
+    document.getElementById('hint-vn-btn').disabled = true;
+  }
+}
+
+function checkSpelling() {
+  const input = document.getElementById('spelling-input');
+  const userAnswer = input.value.trim().toLowerCase();
+  const question = spellingQuestions[currentSpellingIndex];
+  const correctAnswer = question.word.toLowerCase();
+
+  const feedback = document.getElementById('spelling-feedback');
+  input.disabled = true;
+
+  if (userAnswer === correctAnswer) {
+    // Correct!
+    const points = usedHint ? 10 : 15;
+    spellingScore++;
+    addPoints(points);
+
+    feedback.innerHTML = `
+      <div class="feedback-correct">
+        ✅ Chính xác! <strong>${question.word}</strong>
+        ${question.ipa ? `<span class="ipa">${question.ipa}</span>` : ''}
+        <span class="points">+${points}</span>
+      </div>
+    `;
+    feedback.classList.add('correct');
+
+    speakWord('Correct! ' + question.word);
+    createConfetti(5);
+  } else {
+    // Wrong
+    feedback.innerHTML = `
+      <div class="feedback-wrong">
+        ❌ Chưa đúng! Đáp án là: <strong>${question.word}</strong>
+        ${question.ipa ? `<span class="ipa">${question.ipa}</span>` : ''}
+      </div>
+    `;
+    feedback.classList.add('wrong');
+
+    speakWord('The answer is ' + question.word);
+  }
+
+  // Next question after delay
+  setTimeout(() => {
+    currentSpellingIndex++;
+    showSpellingQuestion();
+  }, 2000);
+}
+
+function showSpellingResult() {
+  document.getElementById('spelling-container').style.display = 'none';
+  document.getElementById('spelling-result').style.display = 'block';
+
+  // Record activity for streak
+  recordActivity();
+
+  const resultEmoji = document.getElementById('spelling-result-emoji');
+  const resultMessage = document.getElementById('spelling-result-message');
+  const finalScore = document.getElementById('spelling-final-score');
+  const starsContainer = document.getElementById('spelling-stars-container');
+
+  finalScore.textContent = `${spellingScore}/${spellingQuestions.length}`;
+
+  // Calculate stars
+  const percentage = spellingScore / spellingQuestions.length;
+  let stars = 1;
+  let message = 'Cố gắng lên nhé!';
+  let emoji = '😊';
+
+  if (percentage >= 0.8) {
+    stars = 3;
+    message = 'Tuyệt vời! Spelling giỏi lắm!';
+    emoji = '🎉';
+    createConfetti(20);
+  } else if (percentage >= 0.6) {
+    stars = 2;
+    message = 'Giỏi lắm! Tiếp tục luyện tập!';
+    emoji = '👏';
+    createConfetti(10);
+  }
+
+  resultEmoji.textContent = emoji;
+  resultMessage.textContent = message;
+  starsContainer.textContent = '⭐'.repeat(stars) + '☆'.repeat(3 - stars);
+
+  isSpellingActive = false;
+}
+
+function resetSpelling() {
+  isSpellingActive = false;
+  document.getElementById('start-spelling-container').style.display = 'block';
+  document.getElementById('spelling-container').style.display = 'none';
+  document.getElementById('spelling-result').style.display = 'none';
+}
+
+function restartSpelling() {
+  resetSpelling();
+  startSpelling();
 }
