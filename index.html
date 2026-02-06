@@ -5,6 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>English Fun - Học Tiếng Anh Thông Minh</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FF6B6B">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -46,6 +50,10 @@
         <span class="icon">🎮</span>
         <span class="text">Trò Chơi</span>
       </button>
+      <button class="nav-btn" data-section="parent">
+        <span class="icon">👨‍👩‍👧</span>
+        <span class="text">Phụ huynh</span>
+      </button>
     </div>
   </nav>
 
@@ -56,6 +64,12 @@
       <div class="home-welcome">
         <h1>🌈 Chào Bé Đến Với English Fun!</h1>
         <p>Khám phá thế giới tiếng Anh qua hình ảnh sinh động và âm nhạc vui nhộn</p>
+
+        <!-- SRS Review Prompt -->
+        <div id="srs-review-prompt" class="srs-review-prompt hidden">
+          <p>📚 Có <span id="srs-due-count">0</span> từ cần ôn hôm nay!</p>
+          <button id="srs-review-btn" class="btn-accent">Ôn bài ngay 📖</button>
+        </div>
 
         <div class="feature-cards">
           <div class="feature-card" data-section="vocabulary">
@@ -74,6 +88,17 @@
             <p>Vừa học vừa chơi với những thử thách thú vị</p>
           </div>
         </div>
+
+        <!-- Achievement Badges -->
+        <div id="achievement-display" class="achievement-display">
+          <h3>🏆 Huy hiệu</h3>
+          <div id="badges-grid" class="badges-grid"></div>
+        </div>
+
+        <!-- Progress Summary -->
+        <div id="progress-summary" class="progress-summary">
+          <p>📊 Đã học <span id="total-learned">0</span>/<span id="total-words">0</span> từ vựng</p>
+        </div>
       </div>
     </section>
 
@@ -83,28 +108,49 @@
 
       <div class="category-selector">
         <!-- Row 1 -->
-        <button class="category-btn active" data-category="animals">🐾 Động Vật</button>
-        <button class="category-btn" data-category="colors">🎨 Màu Sắc</button>
-        <button class="category-btn" data-category="numbers">🔢 Số Đếm</button>
-        <button class="category-btn" data-category="fruits">🍎 Trái Cây</button>
-        <button class="category-btn" data-category="bodyParts">🧍 Cơ Thể</button>
-        <button class="category-btn" data-category="food">🍔 Đồ Ăn</button>
+        <button class="category-btn active" data-category="animals">🐾 Animals</button>
+        <button class="category-btn" data-category="colors">🎨 Colors</button>
+        <button class="category-btn" data-category="numbers">🔢 Numbers</button>
+        <button class="category-btn" data-category="fruits">🍎 Fruits</button>
+        <button class="category-btn" data-category="bodyParts">🧍 Body Parts</button>
+        <button class="category-btn" data-category="food">🍔 Food</button>
         <!-- Row 2 -->
-        <button class="category-btn" data-category="family">👨‍👩‍👧‍👦 Gia Đình</button>
-        <button class="category-btn" data-category="clothes">👕 Quần Áo</button>
-        <button class="category-btn" data-category="weather">🌤️ Thời Tiết</button>
-        <button class="category-btn" data-category="feelings">😊 Cảm Xúc</button>
-        <button class="category-btn" data-category="school">🎒 Trường Học</button>
-        <button class="category-btn" data-category="transport">🚗 Phương Tiện</button>
+        <button class="category-btn" data-category="family">👨‍👩‍👧‍👦 Family</button>
+        <button class="category-btn" data-category="clothes">👕 Clothes</button>
+        <button class="category-btn" data-category="weather">🌤️ Weather</button>
+        <button class="category-btn" data-category="school">🎒 School</button>
+        <button class="category-btn" data-category="transport">🚗 Transport</button>
         <!-- Row 3 - New categories -->
-        <button class="category-btn" data-category="sports">⚽ Thể Thao</button>
-        <button class="category-btn" data-category="jobs">👨‍💼 Nghề Nghiệp</button>
-        <button class="category-btn" data-category="adjectives">📝 Tính Từ</button>
-        <button class="category-btn" data-category="seasons">🌸 Mùa</button>
-        <button class="category-btn" data-category="phrases">💬 Giao Tiếp</button>
+        <button class="category-btn" data-category="sports">⚽ Sports</button>
+        <button class="category-btn" data-category="jobs">👨‍💼 Jobs</button>
+        <button class="category-btn" data-category="house">🏠 House</button>
+        <button class="category-btn" data-category="days">📅 Days</button>
+        <button class="category-btn" data-category="seasons">🌸 Seasons</button>
+        <button class="category-btn" data-category="emotionsPicture">🎭 Emotions</button>
       </div>
 
-      <div id="flashcard-container" class="flashcard-grid">
+      <!-- View Mode Toggle -->
+      <div class="view-mode-toggle">
+        <button id="grid-view-btn" class="view-btn">
+          <span class="icon">📱</span> Xem Lưới
+        </button>
+        <button id="study-view-btn" class="view-btn active">
+          <span class="icon">🎯</span> Chế Độ Học
+        </button>
+      </div>
+
+      <!-- Study Mode Controls (visible by default) -->
+      <div id="study-controls" class="study-controls" style="display: flex;">
+        <button id="study-prev-btn" class="study-nav-btn">
+          <span class="icon">◀</span>
+        </button>
+        <div id="study-progress" class="study-progress">1 / 10</div>
+        <button id="study-next-btn" class="study-nav-btn">
+          <span class="icon">▶</span>
+        </button>
+      </div>
+
+      <div id="flashcard-container" class="study-mode-container">
         <!-- Flashcards will be rendered here -->
       </div>
     </section>
@@ -126,19 +172,39 @@
       <div class="game-mode-tabs">
         <button class="game-tab active" data-mode="quiz">🎯 Quiz</button>
         <button class="game-tab" data-mode="spelling">✏️ Spelling</button>
+        <button class="game-tab" data-mode="word-chain">🔗 Word Chain</button>
+        <button class="game-tab" data-mode="true-false">⚡ Đúng/Sai</button>
+        <button class="game-tab" data-mode="flashcard-interactive">✨ Flashcard</button>
+        <button class="game-tab" data-mode="listening">👂 Nghe</button>
+        <button class="game-tab" data-mode="sentence-builder">📝 Xếp câu</button>
+      </div>
+
+      <!-- Quiz Type Selector -->
+      <div class="quiz-type-tabs">
+        <button class="quiz-type-btn active" data-quiz-type="emoji">🎯 Emoji</button>
+        <button class="quiz-type-btn" data-quiz-type="listening">👂 Nghe</button>
+        <button class="quiz-type-btn" data-quiz-type="vn-en">🇻🇳→🇬🇧</button>
+        <button class="quiz-type-btn" data-quiz-type="en-vn">🇬🇧→🇻🇳</button>
       </div>
 
       <div class="category-selector">
-        <button class="quiz-category-btn category-btn active" data-category="animals">🐾 Động Vật</button>
-        <button class="quiz-category-btn category-btn" data-category="colors">🎨 Màu Sắc</button>
-        <button class="quiz-category-btn category-btn" data-category="numbers">🔢 Số Đếm</button>
-        <button class="quiz-category-btn category-btn" data-category="fruits">🍎 Trái Cây</button>
-        <button class="quiz-category-btn category-btn" data-category="food">🍔 Đồ Ăn</button>
-        <button class="quiz-category-btn category-btn" data-category="family">👨‍👩‍👧‍👦 Gia Đình</button>
-        <button class="quiz-category-btn category-btn" data-category="sports">⚽ Thể Thao</button>
-        <button class="quiz-category-btn category-btn" data-category="jobs">👨‍💼 Nghề Nghiệp</button>
-        <button class="quiz-category-btn category-btn" data-category="adjectives">📝 Tính Từ</button>
-        <button class="quiz-category-btn category-btn" data-category="phrases">💬 Giao Tiếp</button>
+        <button class="quiz-category-btn category-btn active" data-category="animals">🐾 Animals</button>
+        <button class="quiz-category-btn category-btn" data-category="colors">🎨 Colors</button>
+        <button class="quiz-category-btn category-btn" data-category="numbers">🔢 Numbers</button>
+        <button class="quiz-category-btn category-btn" data-category="fruits">🍎 Fruits</button>
+        <button class="quiz-category-btn category-btn" data-category="bodyParts">🧍 Body Parts</button>
+        <button class="quiz-category-btn category-btn" data-category="food">🍔 Food</button>
+        <button class="quiz-category-btn category-btn" data-category="family">👨‍👩‍👧‍👦 Family</button>
+        <button class="quiz-category-btn category-btn" data-category="clothes">👕 Clothes</button>
+        <button class="quiz-category-btn category-btn" data-category="weather">🌤️ Weather</button>
+        <button class="quiz-category-btn category-btn" data-category="school">🎒 School</button>
+        <button class="quiz-category-btn category-btn" data-category="transport">🚗 Transport</button>
+        <button class="quiz-category-btn category-btn" data-category="sports">⚽ Sports</button>
+        <button class="quiz-category-btn category-btn" data-category="jobs">👨‍💼 Jobs</button>
+        <button class="quiz-category-btn category-btn" data-category="house">🏠 House</button>
+        <button class="quiz-category-btn category-btn" data-category="days">📅 Days</button>
+        <button class="quiz-category-btn category-btn" data-category="seasons">🌸 Seasons</button>
+        <button class="quiz-category-btn category-btn" data-category="emotionsPicture">🎭 Emotions</button>
       </div>
 
       <!-- ========== QUIZ GAME ========== -->
@@ -170,6 +236,10 @@
           <div id="quiz-options" class="quiz-options">
             <!-- Options will be rendered here -->
           </div>
+
+          <button id="quiz-next-btn" class="nav-btn active next-btn-highlight" style="display: none; margin: 15px auto; padding: 15px 35px; font-size: 1.2rem;">
+            ➡️ Câu Tiếp Theo
+          </button>
         </div>
 
         <!-- Quiz Result -->
@@ -191,10 +261,11 @@
       <div id="spelling-game" style="display: none;">
         <!-- Spelling Start -->
         <div id="start-spelling-container" class="start-quiz-container">
-          <div class="feature-card" style="max-width: 400px; margin: 0 auto; cursor: default;">
+          <div class="feature-card" style="max-width: 500px; margin: 0 auto; cursor: default;">
             <div class="icon">✏️</div>
             <h3>Luyện Viết Từ!</h3>
-            <p>Nghe phát âm, nhìn emoji và gõ từ tiếng Anh. Mỗi từ đúng +15 điểm!</p>
+            <p style="margin-bottom: 20px;">Sắp xếp các chữ cái theo đúng thứ tự để tạo thành từ!</p>
+
             <button id="start-spelling-btn" class="nav-btn active"
               style="margin: 20px auto; display: block; padding: 15px 30px;">
               Bắt Đầu Spelling!
@@ -216,13 +287,32 @@
             <p class="hint-text" id="hint-text" style="display: none;"></p>
           </div>
 
-          <div class="spelling-input-container">
+          <!-- Type Mode (Gõ từ) -->
+          <div id="spelling-type-mode" class="spelling-input-container">
             <input type="text" id="spelling-input" class="spelling-input"
                    placeholder="Gõ từ tiếng Anh..." autocomplete="off" autocapitalize="off">
             <button id="check-spelling-btn" class="nav-btn active">Kiểm Tra</button>
           </div>
 
+          <!-- Arrange Mode (Sắp xếp chữ) -->
+          <div id="spelling-arrange-mode" style="display: none;">
+            <div id="arranged-letters" class="arranged-letters">
+              <!-- Letters user has arranged will show here -->
+            </div>
+            <div id="available-letters" class="available-letters">
+              <!-- Shuffled letters will show here as buttons -->
+            </div>
+            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+              <button id="clear-arrange-btn" class="nav-btn" style="background: #999;">🔄 Xóa</button>
+              <button id="check-arrange-btn" class="nav-btn active">✓ Kiểm Tra</button>
+            </div>
+          </div>
+
           <div id="spelling-feedback" class="spelling-feedback"></div>
+
+          <button id="spelling-next-btn" class="nav-btn active next-btn-highlight" style="display: none; margin: 15px auto; padding: 15px 35px; font-size: 1.2rem;">
+            ➡️ Câu Tiếp Theo
+          </button>
         </div>
 
         <!-- Spelling Result -->
@@ -237,6 +327,414 @@
               🔄 Chơi Lại
             </button>
           </div>
+        </div>
+      </div>
+
+      <!-- ========== WORD CHAIN GAME ========== -->
+      <div id="word-chain-game" style="display: none;">
+        <!-- Word Chain Start -->
+        <div id="start-word-chain-container" class="start-quiz-container">
+          <div class="feature-card" style="max-width: 500px; margin: 0 auto; cursor: default;">
+            <div class="icon">🔗</div>
+            <h3>Trò Chơi Nối Từ!</h3>
+            <p style="margin-bottom: 20px;">Tìm từ đúng để nối chuỗi từ vựng. Game sử dụng <strong>tất cả từ vựng</strong> để tạo thử thách thú vị!</p>
+
+            <!-- Level Selection -->
+            <div class="word-chain-level-selector">
+              <h4 style="margin-bottom: 10px;">Chọn Độ Khó:</h4>
+              <div style="display: flex; gap: 15px; justify-content: center;">
+                <button class="level-btn active" data-level="1">
+                  <div class="level-icon">🌟</div>
+                  <div class="level-name">Level 1</div>
+                  <div class="level-desc">Tìm chữ cái đầu</div>
+                </button>
+                <button class="level-btn" data-level="2">
+                  <div class="level-icon">🔥</div>
+                  <div class="level-name">Level 2</div>
+                  <div class="level-desc">Nối đuôi từ</div>
+                </button>
+              </div>
+            </div>
+
+            <button id="start-word-chain-btn" class="nav-btn active"
+              style="margin: 20px auto; display: block; padding: 15px 30px;">
+              Bắt Đầu Game!
+            </button>
+          </div>
+        </div>
+
+        <!-- Word Chain Game Container -->
+        <div id="word-chain-container" class="quiz-container" style="display: none;">
+          <div class="quiz-progress">
+            <span class="question-num" id="word-chain-num">1/10</span>
+            <span class="quiz-score">⭐ <span id="word-chain-score">0</span></span>
+          </div>
+
+          <!-- Word Chain Visualization -->
+          <div id="word-chain-display" class="word-chain-display">
+            <!-- Chain will be displayed here for Level 2 -->
+          </div>
+
+          <div class="word-chain-question">
+            <div id="word-chain-prompt" class="word-chain-prompt">
+              <!-- Level 1: "Tìm từ bắt đầu bằng chữ A" -->
+              <!-- Level 2: Shows previous word and target letter -->
+            </div>
+          </div>
+
+          <div id="word-chain-options" class="quiz-options">
+            <!-- Options will be rendered here -->
+          </div>
+
+          <button id="word-chain-next-btn" class="nav-btn active next-btn-highlight" style="display: none; margin: 15px auto; padding: 15px 35px; font-size: 1.2rem;">
+            ➡️ Câu Tiếp Theo
+          </button>
+
+          <!-- High-five animation container -->
+          <div id="high-five-animation" class="high-five-animation" style="display: none;">
+            <div class="high-five-emoji">🎉</div>
+            <div class="high-five-text">Tuyệt vời!</div>
+          </div>
+        </div>
+
+        <!-- Word Chain Result -->
+        <div id="word-chain-result" class="quiz-result" style="display: none;">
+          <div class="quiz-container">
+            <div class="result-emoji" id="word-chain-result-emoji" style="font-size: 5rem;">🎉</div>
+            <h3 id="word-chain-result-message" style="margin: 20px 0;">Tuyệt vời!</h3>
+            <p style="font-size: 1.4rem;">Điểm của bé: <strong id="word-chain-final-score"
+                style="color: var(--primary);">100</strong></p>
+
+            <!-- Display the word chain for Level 2 -->
+            <div id="final-chain-display" class="final-chain-display">
+              <!-- Final chain will be shown here -->
+            </div>
+
+            <div class="stars" id="word-chain-stars-container" style="font-size: 3rem; margin: 20px 0;">⭐⭐⭐</div>
+            <button class="nav-btn active" onclick="restartWordChain()" style="margin: 0 auto;">
+              🔄 Chơi Lại
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== TRUE/FALSE RUSH GAME ========== -->
+      <div id="true-false-game" style="display: none;">
+        <!-- True/False Start -->
+        <div id="start-true-false-container" class="start-quiz-container">
+          <div class="feature-card" style="max-width: 500px; margin: 0 auto; cursor: default;">
+            <div class="icon">⚡</div>
+            <h3>Đúng hay Sai?</h3>
+            <p style="margin-bottom: 20px;">
+              Thẻ từ sẽ trượt ngang màn hình!<br>
+              Gạt <strong>PHẢI (→)</strong> nếu đúng<br>
+              Gạt <strong>TRÁI (←)</strong> nếu sai<br>
+              Tốc độ tăng dần!
+            </p>
+            <button id="start-true-false-btn" class="nav-btn active"
+              style="margin: 20px auto; display: block; padding: 15px 30px;">
+              ⚡ Bắt Đầu!
+            </button>
+          </div>
+        </div>
+
+        <!-- True/False Game Container -->
+        <div id="true-false-container" class="quiz-container" style="display: none;">
+          <div class="quiz-progress">
+            <span class="question-num" id="true-false-num">1/20</span>
+            <span class="quiz-score">⭐ <span id="true-false-score">0</span></span>
+          </div>
+
+          <!-- Card Display Area -->
+          <div id="card-display-area" class="card-display-area">
+            <div id="sliding-card" class="sliding-card">
+              <div class="card-emoji" id="card-emoji">🍎</div>
+              <div class="card-word" id="card-word">apple</div>
+            </div>
+          </div>
+
+          <!-- Swipe Instructions -->
+          <div class="swipe-instructions">
+            <div class="swipe-option swipe-left">
+              <div class="swipe-arrow">←</div>
+              <div class="swipe-label">SAI</div>
+            </div>
+            <div class="swipe-option swipe-right">
+              <div class="swipe-arrow">→</div>
+              <div class="swipe-label">ĐÚNG</div>
+            </div>
+          </div>
+
+          <!-- Feedback Message -->
+          <div id="true-false-feedback" class="true-false-feedback"></div>
+        </div>
+
+        <!-- True/False Result -->
+        <div id="true-false-result" class="quiz-result" style="display: none;">
+          <div class="quiz-container">
+            <div class="result-emoji" id="true-false-result-emoji" style="font-size: 5rem;">🎉</div>
+            <h3 id="true-false-result-message" style="margin: 20px 0;">Tuyệt vời!</h3>
+            <p style="font-size: 1.4rem;">Điểm của bé: <strong id="true-false-final-score"
+                style="color: var(--primary);">200</strong></p>
+            <div class="stars" id="true-false-stars-container" style="font-size: 3rem; margin: 20px 0;">⭐⭐⭐</div>
+            <button class="nav-btn active" onclick="restartTrueFalse()" style="margin: 0 auto;">
+              🔄 Chơi Lại
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== FLASHCARD INTERACTIVE GAME ========== -->
+      <div id="flashcard-interactive-game" style="display: none;">
+        <!-- Start Screen -->
+        <div id="start-flashcard-container" class="start-quiz-container">
+          <div class="feature-card" style="max-width: 450px; margin: 0 auto; cursor: default;">
+            <div class="icon">⚡</div>
+            <h3>Flashcard Tương Tác</h3>
+            <p style="margin-bottom: 20px;">Click đúng emoji bay xung quanh từ tiếng Anh trước khi hết giờ!</p>
+            <ul style="text-align: left; margin: 20px auto; max-width: 350px; list-style: none; padding: 0;">
+              <li style="padding: 8px 0; font-size: 1.1rem;">🎯 5 câu hỏi thú vị</li>
+              <li style="padding: 8px 0; font-size: 1.1rem;">⏱️ 10 giây mỗi câu</li>
+              <li style="padding: 8px 0; font-size: 1.1rem;">🔥 Combo x2 khi đúng 3 câu liên tiếp</li>
+              <li style="padding: 8px 0; font-size: 1.1rem;">⚡ Càng nhanh càng nhiều điểm!</li>
+            </ul>
+            <button id="start-flashcard-btn" class="nav-btn active"
+              style="margin: 20px auto; display: block; padding: 15px 30px;">
+              Bắt Đầu Game!
+            </button>
+          </div>
+        </div>
+
+        <!-- Playing Screen -->
+        <div id="flashcard-game-container" class="quiz-container" style="display: none;">
+          <!-- Progress Bar -->
+          <div class="quiz-progress">
+            <span class="question-num" id="flashcard-num">1/5</span>
+            <span class="quiz-score">⭐ <span id="flashcard-score">0</span></span>
+            <span class="combo-display" id="flashcard-combo" style="display: none;">
+              🔥 Combo x<span id="combo-count">0</span>
+            </span>
+          </div>
+
+          <!-- Timer Bar -->
+          <div class="timer-container">
+            <div id="flashcard-timer-bar" class="timer-bar"></div>
+            <span id="flashcard-time-text" class="timer-text">10s</span>
+          </div>
+
+          <!-- Question Display -->
+          <div class="flashcard-question-area">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 15px;">
+              <h2 id="flashcard-word" class="center-word">Loading...</h2>
+              <button id="flashcard-speak-btn" class="speak-btn" style="font-size: 2rem; background: none; border: none; cursor: pointer; padding: 10px;" title="Nghe phát âm">
+                🔊
+              </button>
+            </div>
+            <p id="flashcard-hint" class="word-hint" style="opacity: 0.7;">
+              Click đúng emoji!
+            </p>
+          </div>
+
+          <!-- Orbiting Emojis Arena -->
+          <div id="flashcard-orbit-container" class="orbit-container">
+            <div class="orbit-emoji" id="orbit-emoji-0" data-emoji="">🐶</div>
+            <div class="orbit-emoji" id="orbit-emoji-1" data-emoji="">🐱</div>
+            <div class="orbit-emoji" id="orbit-emoji-2" data-emoji="">🐭</div>
+            <div class="orbit-emoji" id="orbit-emoji-3" data-emoji="">🐹</div>
+          </div>
+
+          <!-- Feedback Display -->
+          <div id="flashcard-feedback" class="flashcard-feedback"></div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="flashcard-result" class="quiz-result" style="display: none;">
+          <div class="quiz-container flashcard-result-container">
+            <div class="result-emoji-large" id="flashcard-result-emoji">🎉</div>
+            <h2 id="flashcard-result-message" class="result-message-large">Tuyệt vời!</h2>
+
+            <div class="result-stats-card">
+              <div class="stat-item">
+                <div class="stat-label">Điểm của bé</div>
+                <div class="stat-value">
+                  <strong id="flashcard-final-score" style="font-size: 3rem; color: var(--primary);">0</strong>
+                </div>
+              </div>
+
+              <div class="stat-divider"></div>
+
+              <div class="stat-item">
+                <div class="stat-label">Combo cao nhất</div>
+                <div class="stat-value">
+                  <strong id="flashcard-max-combo" style="font-size: 2.5rem; color: var(--secondary);">0</strong>
+                  <span style="font-size: 2rem;">🔥</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="stars-large" id="flashcard-stars-container">⭐⭐⭐</div>
+            <button class="nav-btn active result-replay-btn" onclick="restartFlashcardInteractive()">
+              🔄 Chơi Lại
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== LISTENING GAME ========== -->
+      <div id="listening-game-section" class="game-section hidden" style="display: none;">
+        <div id="start-listening-container" class="start-quiz-container">
+          <div class="feature-card" style="max-width: 500px; margin: 0 auto; cursor: default;">
+            <div class="icon">👂</div>
+            <h3>Trò chơi Nghe</h3>
+            <p style="margin-bottom: 20px;">Nghe phát âm và chọn đáp án đúng!</p>
+            <div class="category-selector" id="listening-category-selector">
+              <button class="quiz-category-btn category-btn active" data-category="animals">🐾 Animals</button>
+              <button class="quiz-category-btn category-btn" data-category="colors">🎨 Colors</button>
+              <button class="quiz-category-btn category-btn" data-category="numbers">🔢 Numbers</button>
+              <button class="quiz-category-btn category-btn" data-category="fruits">🍎 Fruits</button>
+              <button class="quiz-category-btn category-btn" data-category="bodyParts">🧍 Body Parts</button>
+              <button class="quiz-category-btn category-btn" data-category="food">🍔 Food</button>
+              <button class="quiz-category-btn category-btn" data-category="family">👨‍👩‍👧‍👦 Family</button>
+              <button class="quiz-category-btn category-btn" data-category="clothes">👕 Clothes</button>
+              <button class="quiz-category-btn category-btn" data-category="weather">🌤️ Weather</button>
+              <button class="quiz-category-btn category-btn" data-category="school">🎒 School</button>
+              <button class="quiz-category-btn category-btn" data-category="transport">🚗 Transport</button>
+              <button class="quiz-category-btn category-btn" data-category="sports">⚽ Sports</button>
+              <button class="quiz-category-btn category-btn" data-category="jobs">👨‍💼 Jobs</button>
+              <button class="quiz-category-btn category-btn" data-category="house">🏠 House</button>
+              <button class="quiz-category-btn category-btn" data-category="days">📅 Days</button>
+              <button class="quiz-category-btn category-btn" data-category="seasons">🌸 Seasons</button>
+              <button class="quiz-category-btn category-btn" data-category="emotionsPicture">🎭 Emotions</button>
+            </div>
+            <button id="start-listening-btn" class="nav-btn active"
+              style="margin: 20px auto; display: block; padding: 15px 30px;">
+              Bắt Đầu Nghe!
+            </button>
+          </div>
+        </div>
+
+        <div id="listening-container" class="quiz-container" style="display: none;">
+          <div class="listening-progress quiz-progress">
+            <span id="listening-progress-text" class="question-num">Câu 1/5</span>
+            <span class="quiz-score">⭐ <span id="listening-score-text">0</span></span>
+          </div>
+          <div class="listening-question">
+            <button id="listening-play-btn" class="listening-play-btn">🔊</button>
+            <p>Nghe và chọn hình đúng</p>
+          </div>
+          <div id="listening-options" class="listening-options quiz-options"></div>
+        </div>
+
+        <div id="listening-result" class="game-result quiz-result" style="display: none;">
+          <div class="quiz-container">
+            <div class="result-emoji" id="listening-result-emoji" style="font-size: 5rem;">🎉</div>
+            <h2 id="listening-result-title" style="margin: 20px 0;">Tuyệt vời!</h2>
+            <p id="listening-result-score" style="font-size: 1.4rem;"></p>
+            <p id="listening-result-message"></p>
+            <button id="restart-listening-btn" class="nav-btn active" style="margin: 0 auto;">Chơi lại 🔄</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== SENTENCE BUILDER GAME ========== -->
+      <div id="sentence-builder-game" class="game-section hidden" style="display: none;">
+        <div id="start-sentence-container" class="start-quiz-container">
+          <div class="feature-card" style="max-width: 500px; margin: 0 auto; cursor: default;">
+            <div class="icon">📝</div>
+            <h3>Xếp câu</h3>
+            <p style="margin-bottom: 20px;">Sắp xếp các từ thành câu hoàn chỉnh!</p>
+            <button id="start-sentence-btn" class="nav-btn active"
+              style="margin: 20px auto; display: block; padding: 15px 30px;">
+              Bắt đầu 🚀
+            </button>
+          </div>
+        </div>
+
+        <div id="sentence-container" class="quiz-container" style="display: none;">
+          <div class="sentence-progress quiz-progress">
+            <span id="sentence-progress-text" class="question-num">Câu 1/5</span>
+            <span class="quiz-score">⭐ <span id="sentence-score-text">0</span></span>
+          </div>
+          <div class="sentence-hint">
+            <span id="sentence-vietnamese"></span>
+            <span id="sentence-emoji-hint"></span>
+          </div>
+          <div id="sentence-assembly" class="sentence-assembly">
+            <p class="placeholder-text">Nhấn vào từ bên dưới để xếp câu</p>
+          </div>
+          <div id="sentence-word-bank" class="sentence-word-bank"></div>
+          <div class="sentence-actions" style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+            <button id="sentence-check-btn" class="nav-btn active" disabled>Kiểm tra ✓</button>
+            <button id="sentence-clear-btn" class="nav-btn" style="background: #999;">Xóa 🔄</button>
+          </div>
+        </div>
+
+        <div id="sentence-result" class="game-result quiz-result" style="display: none;">
+          <div class="quiz-container">
+            <div class="result-emoji" id="sentence-result-emoji" style="font-size: 5rem;">🎉</div>
+            <h2 id="sentence-result-title" style="margin: 20px 0;">Tuyệt vời!</h2>
+            <p id="sentence-result-score" style="font-size: 1.4rem;"></p>
+            <p id="sentence-result-message"></p>
+            <button id="restart-sentence-btn" class="nav-btn active" style="margin: 0 auto;">Chơi lại 🔄</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== WRONG ANSWER REVIEW (shared by all games) ========== -->
+      <div id="review-screen" class="review-screen hidden" style="display: none;">
+        <h2>📖 Từ cần ôn lại</h2>
+        <div id="review-words-list" class="review-words-list"></div>
+        <button id="review-continue-btn" class="nav-btn active" style="margin: 20px auto; display: block; padding: 15px 30px;">Tiếp tục ➡️</button>
+      </div>
+    </section>
+
+    <!-- Parent Dashboard Section -->
+    <section id="parent-section" class="section hidden">
+      <div id="parent-pin-screen">
+        <h2>👨‍👩‍👧 Dành cho Phụ huynh</h2>
+        <p>Nhập mã PIN để xem tiến trình học</p>
+        <div class="pin-input-group" style="display: flex; gap: 10px; justify-content: center; margin: 20px 0;">
+          <input type="password" id="parent-pin-input" maxlength="4" placeholder="••••" class="pin-input"
+            style="width: 120px; text-align: center; font-size: 1.5rem; padding: 10px; border-radius: 15px; border: 2px solid #ddd;">
+          <button id="parent-pin-btn" class="nav-btn active" style="padding: 10px 20px;">Xác nhận</button>
+        </div>
+        <p id="pin-error" class="pin-error hidden" style="color: red; display: none;">Mã PIN không đúng</p>
+      </div>
+      <div id="parent-dashboard" class="hidden" style="display: none;">
+        <h2>📊 Bảng theo dõi</h2>
+        <div class="dashboard-stats" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin: 20px 0;">
+          <div class="stat-card feature-card" style="cursor: default; text-align: center;">
+            <span class="stat-icon" style="font-size: 2rem;">📚</span>
+            <span id="stat-words-learned" class="stat-value" style="font-size: 2rem; font-weight: 700; display: block;">0</span>
+            <span class="stat-label">Từ đã học</span>
+          </div>
+          <div class="stat-card feature-card" style="cursor: default; text-align: center;">
+            <span class="stat-icon" style="font-size: 2rem;">🔥</span>
+            <span id="stat-streak" class="stat-value" style="font-size: 2rem; font-weight: 700; display: block;">0</span>
+            <span class="stat-label">Ngày liên tiếp</span>
+          </div>
+          <div class="stat-card feature-card" style="cursor: default; text-align: center;">
+            <span class="stat-icon" style="font-size: 2rem;">⭐</span>
+            <span id="stat-total-score" class="stat-value" style="font-size: 2rem; font-weight: 700; display: block;">0</span>
+            <span class="stat-label">Tổng điểm</span>
+          </div>
+          <div class="stat-card feature-card" style="cursor: default; text-align: center;">
+            <span class="stat-icon" style="font-size: 2rem;">🏆</span>
+            <span id="stat-achievements" class="stat-value" style="font-size: 2rem; font-weight: 700; display: block;">0</span>
+            <span class="stat-label">Huy hiệu</span>
+          </div>
+        </div>
+        <div class="dashboard-section" style="margin: 20px 0;">
+          <h3>📉 Từ cần cải thiện</h3>
+          <div id="weak-words-list" class="weak-words-list"></div>
+        </div>
+        <div class="dashboard-section" style="margin: 20px 0;">
+          <h3>📈 Tiến trình theo danh mục</h3>
+          <div id="category-mastery-list" class="category-mastery-list"></div>
+        </div>
+        <div class="dashboard-section" style="margin: 20px 0;">
+          <h3>📅 Hoạt động tuần này</h3>
+          <div id="weekly-chart" class="weekly-chart"></div>
         </div>
       </div>
     </section>
@@ -263,6 +761,13 @@
 
   <!-- Scripts -->
   <script src="data.js"></script>
+  <script src="spaced-repetition.js"></script>
+  <script src="listening-game.js"></script>
+  <script src="sentence-builder.js"></script>
+  <script src="achievements.js"></script>
+  <script src="word-chain.js"></script>
+  <script src="true-false-rush.js"></script>
+  <script src="flashcard-interactive.js"></script>
   <script src="app.js"></script>
 </body>
 
