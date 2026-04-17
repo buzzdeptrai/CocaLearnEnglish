@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Father (left) -->
+  <circle cx="16" cy="22" r="6" fill="#FFD4A3"/>
+  <path d="M 12 20 Q 14 18 16 18 Q 18 18 20 20" fill="#2C3E50"/>
+  <rect x="13" y="27" width="6" height="8" fill="#4ECDC4"/>
+  <rect x="13" y="35" width="2.5" height="6" fill="#2C3E50"/>
+  <rect x="16.5" y="35" width="2.5" height="6" fill="#2C3E50"/>
+
+  <!-- Mother (right) -->
+  <circle cx="48" cy="22" r="6" fill="#FFD4A3"/>
+  <path d="M 44 20 Q 45 18 48 18 Q 51 18 52 20 L 52 25 L 44 25 Z" fill="#8B4513"/>
+  <path d="M 45 27 L 42 40 L 54 40 L 51 27 Z" fill="#FF6B9D"/>
+
+  <!-- Girl (front center) -->
+  <circle cx="28" cy="28" r="5" fill="#FFD4A3"/>
+  <circle cx="24" cy="26" r="2.5" fill="#FF6B6B"/>
+  <circle cx="32" cy="26" r="2.5" fill="#FF6B6B"/>
+  <path d="M 26 32 L 24 42 L 32 42 L 30 32 Z" fill="#FFE66D"/>
+
+  <!-- Boy (front right) -->
+  <circle cx="38" cy="28" r="5" fill="#FFD4A3"/>
+  <path d="M 35 26 Q 36 24 38 24 Q 40 24 41 26" fill="#8B4513"/>
+  <rect x="35" y="32" width="6" height="6" fill="#4ECDC4"/>
+  <rect x="35" y="38" width="2.5" height="4" fill="#FF6B6B"/>
+  <rect x="38.5" y="38" width="2.5" height="4" fill="#FF6B6B"/>
+
+  <!-- Hearts above (representing love/family) -->
+  <path d="M 32 10 L 34 8 Q 36 6 38 8 Q 40 10 38 12 L 32 18 L 26 12 Q 24 10 26 8 Q 28 6 30 8 Z" fill="#FF6B9D" opacity="0.6"/>
+
+  <!-- Holding hands indicators -->
+  <line x1="19" y1="30" x2="24" y2="32" stroke="#FFD4A3" stroke-width="2" stroke-linecap="round"/>
+  <line x1="32" y1="34" x2="35" y2="34" stroke="#FFD4A3" stroke-width="2" stroke-linecap="round"/>
+  <line x1="41" y1="34" x2="45" y2="30" stroke="#FFD4A3" stroke-width="2" stroke-linecap="round"/>
+</svg>

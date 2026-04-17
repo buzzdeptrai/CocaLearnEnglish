@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Head (big proportions for baby) -->
+  <circle cx="32" cy="26" r="12" fill="#FFD4A3" stroke="#E0A370" stroke-width="1"/>
+
+  <!-- Little hair tuft -->
+  <path d="M 30 14 Q 32 12 34 14" stroke="#8B4513" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+  <!-- Big eyes -->
+  <circle cx="28" cy="25" r="2.5" fill="#FFFFFF" stroke="#2C3E50" stroke-width="1"/>
+  <circle cx="28" cy="25" r="1.5" fill="#2C3E50"/>
+  <circle cx="36" cy="25" r="2.5" fill="#FFFFFF" stroke="#2C3E50" stroke-width="1"/>
+  <circle cx="36" cy="25" r="1.5" fill="#2C3E50"/>
+
+  <!-- Rosy cheeks -->
+  <circle cx="23" cy="28" r="2.5" fill="#FF6B9D" opacity="0.4"/>
+  <circle cx="41" cy="28" r="2.5" fill="#FF6B9D" opacity="0.4"/>
+
+  <!-- Small smile -->
+  <path d="M 28 31 Q 32 33 36 31" stroke="#E67E22" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+
+  <!-- Neck (short) -->
+  <rect x="29" y="37" width="6" height="2" fill="#FFD4A3"/>
+
+  <!-- Onesie/Baby clothes -->
+  <path d="M 26 39 L 26 52 Q 26 54 28 54 L 36 54 Q 38 54 38 52 L 38 39 Z" fill="#87CEEB" stroke="#5DADE2" stroke-width="1.5"/>
+
+  <!-- Onesie buttons -->
+  <circle cx="32" cy="43" r="1" fill="#FFFFFF"/>
+  <circle cx="32" cy="47" r="1" fill="#FFFFFF"/>
+
+  <!-- Diaper bottom -->
+  <rect x="26" y="52" width="12" height="6" rx="2" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Arms (short, chubby) -->
+  <path d="M 26 41 Q 20 43 18 47" stroke="#FFD4A3" stroke-width="5" stroke-linecap="round"/>
+  <path d="M 38 41 Q 44 43 46 47" stroke="#FFD4A3" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Little hands -->
+  <circle cx="18" cy="47" r="2.5" fill="#FFD4A3"/>
+  <circle cx="46" cy="47" r="2.5" fill="#FFD4A3"/>
+</svg>

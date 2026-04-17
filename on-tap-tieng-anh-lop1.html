@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ôn Tập Tiếng Anh Lớp 1 – HK2 2025-2026</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Nunito', 'Comic Sans MS', 'Chalkboard SE', cursive;
+  background: #eef4ff;
+  padding: 16px;
+  color: #333;
+  font-size: 16px;
+}
+header {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ffd93d 35%, #6bcb77 65%, #4d96ff 100%);
+  border-radius: 24px;
+  padding: 28px 20px;
+  text-align: center;
+  margin-bottom: 24px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+header h1 { font-size: 1.6em; color: #fff; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); line-height: 1.3; }
+header p  { color: #fff; margin-top: 8px; font-size: 1em; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+.name-row {
+  background: white;
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.name-row label { font-weight: bold; color: #555; }
+.name-row input {
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 1em;
+  font-family: inherit;
+  flex: 1;
+  min-width: 140px;
+}
+.task-section {
+  background: white;
+  border-radius: 20px;
+  padding: 22px 18px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.09);
+}
+.task-title {
+  font-size: 1.25em;
+  font-weight: bold;
+  padding-bottom: 10px;
+  margin-bottom: 6px;
+  border-bottom: 3px dashed #ffd93d;
+}
+.task-instr { font-size: 0.92em; color: #777; margin-bottom: 16px; font-style: italic; }
+
+/* ===== OPTION BUTTON (task 1, 4, 5) ===== */
+.q-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.q-card {
+  background: #f8f9ff;
+  border-radius: 14px;
+  padding: 12px 10px;
+  text-align: center;
+  border: 2px solid #e4e8ff;
+}
+.q-num  { font-size: 0.82em; color: #aaa; margin-bottom: 4px; }
+.q-img  { font-size: 2.6em; margin: 6px 0; line-height: 1; }
+.q-opts { display: flex; flex-direction: column; gap: 5px; margin-top: 8px; }
+.q-opts.row { flex-direction: row; justify-content: center; flex-wrap: wrap; }
+.opt-btn {
+  background: #f0f2ff;
+  border: 2px solid transparent;
+  border-radius: 9px;
+  padding: 6px 8px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-family: inherit;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+.opt-btn:hover:not(:disabled)   { background: #dce6ff; border-color: #4d96ff; transform: scale(1.04); }
+.opt-btn.sel   { background: #4d96ff; color: #fff; border-color: #4d96ff; }
+.opt-btn.ok    { background: #6bcb77; color: #fff; border-color: #6bcb77; }
+.opt-btn.err   { background: #ff6b6b; color: #fff; border-color: #ff6b6b; }
+.opt-btn:disabled { cursor: default; }
+
+/* ===== CHECK BUTTON ===== */
+.check-btn {
+  background: linear-gradient(135deg, #ffd93d, #ff9f43);
+  color: #333;
+  font-weight: bold;
+  border: none;
+  border-radius: 14px;
+  padding: 11px 28px;
+  font-size: 1.05em;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  font-family: inherit;
+  transition: transform 0.15s;
+  margin-top: 6px;
+}
+.check-btn:hover { transform: scale(1.05); }
+.score-msg { font-size: 1.1em; color: #4d96ff; margin-top: 10px; font-weight: bold; min-height: 28px; }
+
+/* ===== TASK 2 MATCHING ===== */
+.match-wrap { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+.match-col  { display: flex; flex-direction: column; gap: 9px; flex: 1; min-width: 130px; }
+.m-item {
+  background: #f8f9ff;
+  border: 2px solid #e4e8ff;
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1.05em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: border-color 0.15s, background 0.15s;
+  min-height: 48px;
+}
+.m-item:hover:not(.done) { border-color: #4d96ff; background: #eef3ff; }
+.m-item.sel  { background: #ffd93d; border-color: #f0b800; }
+.m-item.ok   { background: #6bcb77; color: #fff; border-color: #6bcb77; }
+.m-item.err  { background: #ff6b6b; color: #fff; border-color: #ff6b6b; }
+.m-item.done { cursor: default; }
+
+/* ===== TASK 3 TICK/CROSS ===== */
+.tick-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-bottom: 14px; }
+.tick-card { background: #f8f9ff; border-radius: 14px; padding: 12px 8px; text-align: center; border: 2px solid #e4e8ff; }
+.tick-word { font-size: 1em; font-weight: bold; margin: 6px 0; }
+.tick-btns { display: flex; gap: 10px; justify-content: center; margin-top: 8px; }
+.tick-btn {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  background: white;
+  font-size: 1.4em;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.15s;
+  font-family: inherit;
+}
+.tick-btn:hover:not(:disabled) { transform: scale(1.12); }
+.tick-btn.sel-y  { background: #6bcb77; border-color: #6bcb77; color: #fff; }
+.tick-btn.sel-n  { background: #ff6b6b; border-color: #ff6b6b; color: #fff; }
+.tick-btn.ok     { background: #6bcb77 !important; border-color: #6bcb77 !important; color: #fff !important; }
+.tick-btn.err    { background: #ff6b6b !important; border-color: #ff6b6b !important; color: #fff !important; }
+
+/* ===== TASK 6 WORDBANK + FILL ===== */
+.wordbank {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  background: #fffbe6; border: 2px dashed #ffd93d;
+  border-radius: 14px; padding: 12px 14px;
+  margin-bottom: 16px;
+}
+.wb-chip {
+  background: #4d96ff; color: #fff;
+  padding: 5px 14px; border-radius: 20px;
+  cursor: pointer; font-size: 0.95em;
+  font-family: inherit;
+  transition: background 0.15s, transform 0.1s;
+  border: none;
+  user-select: none;
+}
+.wb-chip:hover:not(.used) { background: #2779f5; transform: scale(1.06); }
+.wb-chip.used { background: #bbb; cursor: default; text-decoration: line-through; }
+.fill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 12px; margin-bottom: 14px; }
+.fill-card { background: #f8f9ff; border-radius: 14px; padding: 12px 8px; text-align: center; border: 2px solid #e4e8ff; }
+.fill-inp {
+  width: 100%; padding: 7px;
+  border: 2px solid #ccc; border-radius: 8px;
+  font-size: 1em; text-align: center;
+  font-family: inherit; margin-top: 8px;
+  background: white; outline: none;
+}
+.fill-inp:focus { border-color: #4d96ff; }
+.fill-inp.ok  { border-color: #6bcb77; background: #edfaed; color: #2a7a2a; font-weight: bold; }
+.fill-inp.err { border-color: #ff6b6b; background: #ffeded; }
+.eg-note { font-size: 0.8em; color: #4d96ff; margin-top: 4px; font-style: italic; }
+.eg-ans  { font-size: 1.15em; font-weight: bold; color: #4d96ff; margin-top: 6px; }
+
+@media (max-width: 560px) {
+  header h1  { font-size: 1.2em; }
+  .q-grid    { grid-template-columns: repeat(2, 1fr); }
+  .q-img     { font-size: 2em; }
+  .tick-grid { grid-template-columns: repeat(3, 1fr); }
+  .fill-grid { grid-template-columns: repeat(3, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div style="font-size:2.2em;margin-bottom:6px">📚 ✏️ 🌟</div>
+  <h1>NỘI DUNG ÔN TẬP TIẾNG ANH LỚP 1</h1>
+  <p>Học Kì 2 – Năm học 2025 / 2026</p>
+</header>
+
+<div class="name-row">
+  <label>Họ và tên:</label>
+  <input type="text" placeholder="Điền tên của em vào đây...">
+  <label>Lớp: 1/</label>
+  <input type="text" placeholder="..." style="max-width:80px">
+</div>
+
+<!-- ===================== TASK 1 ===================== -->
+<div class="task-section">
+  <div class="task-title" style="color:#e05;">🔵 Task 1: Look and circle</div>
+  <div class="task-instr">Nhìn tranh và khoanh tròn đáp án đúng (A, B hoặc C)</div>
+  <div class="q-grid" id="t1"></div>
+  <button class="check-btn" onclick="checkT1()">✅ Kiểm tra Task 1</button>
+  <div class="score-msg" id="sc1"></div>
+</div>
+
+<!-- ===================== TASK 2 ===================== -->
+<div class="task-section">
+  <div class="task-title" style="color:#b8860b;">🟡 Task 2: Look and draw lines</div>
+  <div class="task-instr">Nhìn tranh và nối – Nhấn vào tranh bên trái, rồi nhấn vào từ bên phải để nối</div>
+  <div class="match-wrap">
+    <div class="match-col" id="t2L"></div>
+    <div class="match-col" id="t2R"></div>
+  </div>
+  <button class="check-btn" onclick="checkT2()">✅ Kiểm tra Task 2</button>
+  <div class="score-msg" id="sc2"></div>
+</div>
+
+<!-- ===================== TASK 3 ===================== -->
+<div class="task-section">
+  <div class="task-title" style="color:#2a7a2a;">🟢 Task 3: Read and tick (✓) or (✗)</div>
+  <div class="task-instr">Đọc và đánh dấu: nhấn ✓ nếu tranh đúng với từ, nhấn ✗ nếu sai</div>
+  <div class="tick-grid" id="t3"></div>
+  <button class="check-btn" onclick="checkT3()">✅ Kiểm tra Task 3</button>
+  <div class="score-msg" id="sc3"></div>
+</div>
+
+<!-- ===================== TASK 4 ===================== -->
+<div class="task-section">
+  <div class="task-title" style="color:#c0540a;">🟠 Task 4: Look and circle the correct answer</div>
+  <div class="task-instr">Nhìn tranh và khoanh tròn từ đúng</div>
+  <div class="q-grid" id="t4a"></div>
+  <div style="font-weight:bold;color:#888;margin:14px 0 10px;">Phần 2 – Nhìn tranh, câu nói đúng hay sai? Chọn Yes hoặc No</div>
+  <div class="q-grid" id="t4b"></div>
+  <button class="check-btn" onclick="checkT4()">✅ Kiểm tra Task 4</button>
+  <div class="score-msg" id="sc4"></div>
+</div>
+
+<!-- ===================== TASK 5 ===================== -->
+<div class="task-section">
+  <div class="task-title" style="color:#6a0dad;">🟣 Task 5: Look and circle the correct letter</div>
+  <div class="task-instr">Nhìn tranh và khoanh tròn chữ cái đúng (chữ cái bắt đầu của từ)</div>
+  <div class="q-grid" id="t5"></div>
+  <button class="check-btn" onclick="checkT5()">✅ Kiểm tra Task 5</button>
+  <div class="score-msg" id="sc5"></div>
+</div>
+
+<!-- ===================== TASK 6 ===================== -->
+<div class="task-section">
+  <div class="task-title" style="color:#c00;">🔴 Task 6: Look and write</div>
+  <div class="task-instr">Nhìn tranh và gõ từ đúng vào ô. Có thể nhấn vào từ trong hộp từ vựng để điền tự động vào ô đang chọn.</div>
+  <div class="wordbank" id="t6wb"><strong style="align-self:center;color:#555;margin-right:4px">📦 Từ vựng:</strong></div>
+  <div class="fill-grid" id="t6"></div>
+  <button class="check-btn" onclick="checkT6()">✅ Kiểm tra Task 6</button>
+  <div class="score-msg" id="sc6"></div>
+</div>
+
+<div style="text-align:center;padding:20px;color:#888;font-size:0.9em">
+  🌟 Cố gắng lên em nhé! Ôn tập thật giỏi! 🌟
+</div>
+
+<script>
+// ============================================================
+//  TASK 1
+// ============================================================
+const T1 = [
+  { n:0,  img:'🐻',       opts:['A. bird','B. bear','C. hippo'],        ans:1 },
+  { n:1,  img:'🤲',       opts:['A. hands','B. legs','C. ears'],         ans:0 },
+  { n:2,  img:'🍌',       opts:['A. drink','B. banana','C. cookie'],     ans:1 },
+  { n:3,  img:'🐊',       opts:['A. crocodile','B. yak','C. tiger'],     ans:0 },
+  { n:4,  img:'👃',       opts:['A. face','B. nose','C. legs'],          ans:1 },
+  { n:5,  img:'🍐',       opts:['A. pear','B. sandwich','C. lunchbox'],  ans:0 },
+  { n:6,  img:'🐻🐻',    opts:['A. birds','B. tigers','C. bears'],       ans:2 },
+  { n:7,  img:'🖐️',      opts:['A. legs','B. fingers','C. face'],       ans:1 },
+  { n:8,  img:'🥤',       opts:['A. pear','B. drink','C. lunchbox'],     ans:1 },
+  { n:9,  img:'🐦🐦',    opts:['A. birds','B. crocodiles','C. bears'],   ans:0 },
+  { n:10, img:'💪',       opts:['A. arms','B. fingers','C. legs'],       ans:0 },
+  { n:11, img:'🍪',       opts:['A. drink','B. cookie','C. banana'],     ans:1 },
+  { n:12, img:'🐯🐯',    opts:['A. hippos','B. birds','C. tigers'],      ans:2 },
+  { n:13, img:'😊',       opts:['A. legs','B. nose','C. face'],          ans:2 },
+  { n:14, img:'🍎🍎',    opts:['A. cookies','B. bananas','C. apples'],   ans:2 },
+];
+const sel = {};   // questionId -> chosen index
+
+(function buildT1(){
+  const g = document.getElementById('t1');
+  T1.forEach(q => {
+    const id = 't1q'+q.n;
+    const d = document.createElement('div');
+    d.className = 'q-card';
+    d.innerHTML = `<div class="q-num">Câu ${q.n}</div>
+      <div class="q-img">${q.img}</div>
+      <div class="q-opts">
+        ${q.opts.map((o,i)=>`<button class="opt-btn" data-g="${id}" data-i="${i}" onclick="pick(this)">${o}</button>`).join('')}
+      </div>`;
+    g.appendChild(d);
+  });
+})();
+
+function pick(btn){
+  const g = btn.dataset.g;
+  document.querySelectorAll(`[data-g="${g}"]`).forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  sel[g] = +btn.dataset.i;
+}
+
+function checkT1(){
+  let ok=0;
+  T1.forEach(q=>{
+    const id='t1q'+q.n;
+    document.querySelectorAll(`[data-g="${id}"]`).forEach(b=>{
+      b.disabled=true;
+      const i=+b.dataset.i;
+      if(i===q.ans){ b.classList.remove('sel'); b.classList.add('ok'); }
+      else if(b.classList.contains('sel')){ b.classList.remove('sel'); b.classList.add('err'); }
+    });
+    if(sel[id]===q.ans) ok++;
+  });
+  document.getElementById('sc1').innerHTML = scoreMsg(ok, T1.length);
+}
+
+// ============================================================
+//  TASK 2
+// ============================================================
+const T2 = [
+  { img:'🦁', word:'lion' },
+  { img:'🥭', word:'mango' },
+  { img:'🍭', word:'lollipop' },
+  { img:'🧃', word:'juice' },
+  { img:'🦘', word:'kangaroo' },
+  { img:'🫙', word:'jug' },
+  { img:'🐊', word:'crocodile' },
+  { img:'🍐', word:'pear' },
+  { img:'🐐', word:'goat' },
+  { img:'🖐️', word:'fingers' },
+  { img:'🔑', word:'key' },
+  { img:'🪁', word:'kite' },
+];
+let t2SelL = null;
+const t2Matched = {};   // leftIdx -> rightIdx
+
+(function buildT2(){
+  const lCol = document.getElementById('t2L');
+  const rCol = document.getElementById('t2R');
+  // shuffled order for right column
+  const order = T2.map((_,i)=>i).sort(()=>Math.random()-0.5);
+  T2.forEach((p,i)=>{
+    const l = document.createElement('div');
+    l.className = 'm-item';
+    l.id = 't2L'+i;
+    l.innerHTML = `<span style="font-size:1.5em">${p.img}</span><span>${p.word}</span>`;
+    l.onclick = ()=>t2ClickL(i);
+    lCol.appendChild(l);
+  });
+  order.forEach(origIdx=>{
+    const r = document.createElement('div');
+    r.className = 'm-item';
+    r.id = 't2R'+origIdx;
+    r.dataset.orig = origIdx;
+    r.textContent = T2[origIdx].word;
+    r.onclick = ()=>t2ClickR(origIdx);
+    rCol.appendChild(r);
+  });
+})();
+
+function t2ClickL(i){
+  if(t2Matched['L'+i]) return;
+  if(t2SelL !== null) document.getElementById('t2L'+t2SelL).classList.remove('sel');
+  t2SelL = i;
+  document.getElementById('t2L'+i).classList.add('sel');
+}
+
+function t2ClickR(origIdx){
+  const rEl = document.getElementById('t2R'+origIdx);
+  if(rEl.classList.contains('done')) return;
+  if(t2SelL === null) return;
+  const lEl = document.getElementById('t2L'+t2SelL);
+  lEl.classList.remove('sel');
+  lEl.classList.add('done');
+  rEl.classList.add('done');
+  t2Matched['L'+t2SelL] = origIdx;
+  t2Matched['R'+origIdx] = t2SelL;
+  // visual: mark as tentatively matched (yellow)
+  lEl.classList.add('sel');
+  rEl.classList.add('sel');
+  t2SelL = null;
+}
+
+function checkT2(){
+  let ok=0;
+  T2.forEach((_,i)=>{
+    const lEl = document.getElementById('t2L'+i);
+    const matchedRight = t2Matched['L'+i];
+    if(matchedRight === i){
+      ok++;
+      lEl.classList.remove('sel','err'); lEl.classList.add('ok');
+      document.getElementById('t2R'+i).classList.remove('sel','err'); document.getElementById('t2R'+i).classList.add('ok');
+    } else {
+      lEl.classList.remove('sel'); lEl.classList.add('err');
+      if(matchedRight !== undefined){
+        const rEl = document.getElementById('t2R'+matchedRight);
+        rEl.classList.remove('sel'); rEl.classList.add('err');
+      }
+    }
+  });
+  document.getElementById('sc2').innerHTML = scoreMsg(ok, T2.length);
+}
+
+// ============================================================
+//  TASK 3
+// ============================================================
+const T3 = [
+  { n:0,  img:'🐊',    word:'crocodile', ok:true  },
+  { n:1,  img:'🍐🍐',  word:'pears',     ok:true  },
+  { n:2,  img:'🐦🐦',  word:'birds',     ok:true  },
+  { n:3,  img:'9️⃣',   word:'nine',      ok:true  },
+  { n:4,  img:'🥤',    word:'drink',     ok:true  },
+  { n:5,  img:'🖊️',   word:'ink',       ok:true  },
+  { n:6,  img:'🦛🦛',  word:'hippos',    ok:true  },
+  { n:7,  img:'🍎🍎',  word:'pears',     ok:false },
+  { n:8,  img:'🍎🍎',  word:'apples',    ok:true  },
+  { n:9,  img:'🔟',    word:'ten',       ok:true  },
+  { n:10, img:'🐻🐻',  word:'bears',     ok:true  },
+  { n:11, img:'8️⃣',   word:'eight',     ok:true  },
+];
+const t3sel = {};
+
+(function buildT3(){
+  const g = document.getElementById('t3');
+  T3.forEach(q=>{
+    const d = document.createElement('div');
+    d.className='tick-card';
+    d.innerHTML=`<div class="q-num">Câu ${q.n}</div>
+      <div style="font-size:2em;line-height:1">${q.img}</div>
+      <div class="tick-word">${q.word}</div>
+      <div class="tick-btns">
+        <button class="tick-btn" id="ty${q.n}" onclick="t3pick(${q.n},true)">✓</button>
+        <button class="tick-btn" id="tn${q.n}" onclick="t3pick(${q.n},false)">✗</button>
+      </div>`;
+    g.appendChild(d);
+  });
+})();
+
+function t3pick(n, yes){
+  t3sel[n]=yes;
+  document.getElementById('ty'+n).className='tick-btn'+(yes?' sel-y':'');
+  document.getElementById('tn'+n).className='tick-btn'+(!yes?' sel-n':'');
+}
+
+function checkT3(){
+  let ok=0;
+  T3.forEach(q=>{
+    const ty=document.getElementById('ty'+q.n), tn=document.getElementById('tn'+q.n);
+    ty.disabled=true; tn.disabled=true;
+    const ans=t3sel[q.n];
+    if(ans===undefined) return;
+    if(ans===q.ok){ ok++; (q.ok?ty:tn).classList.add('ok'); }
+    else {
+      (q.ok?ty:tn).style.cssText='background:#6bcb77;border-color:#6bcb77;color:#fff';
+      (q.ok?tn:ty).classList.add('err');
+    }
+  });
+  document.getElementById('sc3').innerHTML = scoreMsg(ok, T3.length);
+}
+
+// ============================================================
+//  TASK 4
+// ============================================================
+const T4a = [
+  { n:0, img:'🧃', opts:['jug','juice'],  ans:1 },
+  { n:1, img:'🥭', opts:['man','mango'],  ans:1 },
+  { n:2, img:'🌿', opts:['leaf','fig'],   ans:0 },
+  { n:3, img:'🐐', opts:['goat','dog'],   ans:0 },
+  { n:4, img:'🪁', opts:['kite','key'],   ans:0 },
+  { n:5, img:'🫙', opts:['jelly','jug'],  ans:1 },
+];
+const T4b = [
+  { n:0, img:'🌿',    txt:'I have a fig.',        ans:1 },
+  { n:1, img:'🐻',    txt:"It's a bear.",          ans:0 },
+  { n:2, img:'🍪',    txt:'I have a cookie.',      ans:0 },
+  { n:3, img:'🦵🦵',  txt:'These are my legs.',   ans:0 },
+  { n:4, img:'🐦🐦',  txt:'They are birds.',      ans:0 },
+  { n:5, img:'👃',    txt:'This is my nose.',      ans:0 },
+];
+
+(function buildT4(){
+  const ga=document.getElementById('t4a'), gb=document.getElementById('t4b');
+  T4a.forEach(q=>{
+    const id='t4aq'+q.n;
+    const d=document.createElement('div'); d.className='q-card';
+    d.innerHTML=`<div class="q-num">Câu ${q.n}</div>
+      <div class="q-img">${q.img}</div>
+      <div class="q-opts row">
+        ${q.opts.map((o,i)=>`<button class="opt-btn" data-g="${id}" data-i="${i}" onclick="pick(this)" style="flex:1">${o}</button>`).join('')}
+      </div>`;
+    ga.appendChild(d);
+  });
+  T4b.forEach(q=>{
+    const id='t4bq'+q.n;
+    const d=document.createElement('div'); d.className='q-card';
+    d.innerHTML=`<div class="q-num">Câu ${q.n}</div>
+      <div class="q-img">${q.img}</div>
+      <div style="font-size:0.85em;color:#555;margin:4px 0">${q.txt}</div>
+      <div class="q-opts row">
+        <button class="opt-btn" data-g="${id}" data-i="0" onclick="pick(this)" style="flex:1">Yes</button>
+        <button class="opt-btn" data-g="${id}" data-i="1" onclick="pick(this)" style="flex:1">No</button>
+      </div>`;
+    gb.appendChild(d);
+  });
+})();
+
+function checkT4(){
+  let ok=0, tot=T4a.length+T4b.length;
+  [...T4a,...T4b.map(q=>({...q,n:q.n,_b:true}))].forEach(q=>{
+    const id=(q._b?'t4bq':'t4aq')+q.n;
+    document.querySelectorAll(`[data-g="${id}"]`).forEach(b=>{
+      b.disabled=true;
+      const i=+b.dataset.i;
+      if(i===q.ans){ b.classList.remove('sel'); b.classList.add('ok'); }
+      else if(b.classList.contains('sel')){ b.classList.remove('sel'); b.classList.add('err'); }
+    });
+    if(sel[id]===q.ans) ok++;
+  });
+  document.getElementById('sc4').innerHTML = scoreMsg(ok,tot);
+}
+
+// ============================================================
+//  TASK 5
+// ============================================================
+const T5 = [
+  { n:0, img:'🐟', opts:['e','f'], ans:1 },
+  { n:1, img:'🐔', opts:['h','f'], ans:0 },
+  { n:2, img:'🍋', opts:['e','l'], ans:1 },
+  { n:3, img:'🌙', opts:['m','l'], ans:0 },
+  { n:4, img:'🧃', opts:['j','k'], ans:0 },
+  { n:5, img:'🪁', opts:['k','i'], ans:0 },
+  { n:6, img:'🦆', opts:['d','f'], ans:0 },
+  { n:7, img:'⚽', opts:['b','c'], ans:0 },
+];
+
+(function buildT5(){
+  const g=document.getElementById('t5');
+  T5.forEach(q=>{
+    const id='t5q'+q.n;
+    const d=document.createElement('div'); d.className='q-card';
+    d.innerHTML=`<div class="q-num">Câu ${q.n}</div>
+      <div class="q-img">${q.img}</div>
+      <div class="q-opts row" style="justify-content:center;gap:12px">
+        ${q.opts.map((o,i)=>`<button class="opt-btn" data-g="${id}" data-i="${i}" onclick="pick(this)" style="width:52px;height:52px;font-size:1.4em;border-radius:50%;padding:0">${o}</button>`).join('')}
+      </div>`;
+    g.appendChild(d);
+  });
+})();
+
+function checkT5(){
+  let ok=0;
+  T5.forEach(q=>{
+    const id='t5q'+q.n;
+    document.querySelectorAll(`[data-g="${id}"]`).forEach(b=>{
+      b.disabled=true;
+      const i=+b.dataset.i;
+      if(i===q.ans){ b.classList.remove('sel'); b.classList.add('ok'); }
+      else if(b.classList.contains('sel')){ b.classList.remove('sel'); b.classList.add('err'); }
+    });
+    if(sel[id]===q.ans) ok++;
+  });
+  document.getElementById('sc5').innerHTML = scoreMsg(ok, T5.length);
+}
+
+// ============================================================
+//  TASK 6
+// ============================================================
+const T6 = [
+  { n:0,  img:'🤲',  ans:'hands',    eg:true  },
+  { n:1,  img:'🦵',  ans:'legs'           },
+  { n:2,  img:'👃',  ans:'nose'           },
+  { n:3,  img:'😊',  ans:'face'           },
+  { n:4,  img:'🍐',  ans:'pear'           },
+  { n:5,  img:'🍪',  ans:'cookie'         },
+  { n:6,  img:'🥤',  ans:'drink'          },
+  { n:7,  img:'🥪',  ans:'sandwich'       },
+  { n:8,  img:'🔟',  ans:'ten'            },
+  { n:9,  img:'7️⃣', ans:'seven'          },
+  { n:10, img:'🐯',  ans:'tiger'          },
+  { n:11, img:'🦘',  ans:'kangaroo'       },
+];
+const wb = ['legs','cookie','pear','drink','hands','nose','ten','face','sandwich','seven','tiger','kangaroo'];
+let t6Focus = null;
+
+(function buildT6(){
+  const wbEl=document.getElementById('t6wb');
+  wb.forEach(w=>{
+    const b=document.createElement('button');
+    b.className='wb-chip'; b.id='wb'+w; b.textContent=w;
+    b.onclick=()=>t6Insert(w);
+    wbEl.appendChild(b);
+  });
+  const g=document.getElementById('t6');
+  T6.forEach(q=>{
+    const d=document.createElement('div'); d.className='fill-card';
+    if(q.eg){
+      d.innerHTML=`<div class="q-num">Câu ${q.n} (mẫu)</div>
+        <div style="font-size:2.4em">${q.img}</div>
+        <div class="eg-ans">${q.ans}</div>
+        <div class="eg-note">✅ Ví dụ</div>`;
+    } else {
+      d.innerHTML=`<div class="q-num">Câu ${q.n}</div>
+        <div style="font-size:2.4em">${q.img}</div>
+        <input class="fill-inp" id="t6i${q.n}" placeholder="..." autocomplete="off" spellcheck="false">`;
+    }
+    g.appendChild(d);
+  });
+  document.querySelectorAll('.fill-inp').forEach(inp=>{
+    inp.addEventListener('focus',()=>{ t6Focus=inp; });
+  });
+})();
+
+function t6Insert(word){
+  if(!t6Focus) return;
+  t6Focus.value=word;
+  t6Focus.focus();
+}
+
+function checkT6(){
+  let ok=0, tot=T6.filter(q=>!q.eg).length;
+  // reset wb chips
+  document.querySelectorAll('.wb-chip').forEach(c=>c.classList.remove('used'));
+  T6.forEach(q=>{
+    if(q.eg) return;
+    const inp=document.getElementById('t6i'+q.n);
+    inp.disabled=true;
+    const val=inp.value.trim().toLowerCase();
+    if(val===q.ans){
+      ok++;
+      inp.classList.add('ok');
+      const chip=document.getElementById('wb'+q.ans);
+      if(chip) chip.classList.add('used');
+    } else {
+      inp.classList.add('err');
+      inp.placeholder='✅ '+q.ans;
+    }
+  });
+  document.getElementById('sc6').innerHTML = scoreMsg(ok,tot);
+}
+
+// ============================================================
+//  SCORE HELPER
+// ============================================================
+function scoreMsg(ok, tot){
+  const p=Math.round(ok/tot*100);
+  const emoji = p===100?'🏆🎉': p>=80?'⭐👏': p>=60?'💪😊': p>=40?'📖🙂':'✏️😅';
+  const msg   = p===100?'Xuất sắc! Làm đúng hết rồi!': p>=80?'Giỏi lắm!': p>=60?'Tốt lắm, cố thêm nha!': p>=40?'Cần ôn thêm nhé!':'Đọc lại bài và thử lại em nhé!';
+  return `${emoji} <strong>${ok}/${tot}</strong> câu đúng &nbsp;–&nbsp; ${p}% &nbsp;–&nbsp; ${msg}`;
+}
+</script>
+</body>
+</html>

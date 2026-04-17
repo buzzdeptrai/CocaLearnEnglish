@@ -412,6 +412,51 @@ const vocabularyData = {
       { word: "read", vietnamese: "đọc", emoji: "📖", ipa: "/riːd/", example: "Read this sentence.", exampleVn: "Đọc câu này." },
       { word: "quiet", vietnamese: "im lặng", emoji: "🤫", ipa: "/ˈkwaɪət/", example: "Please be quiet.", exampleVn: "Hãy im lặng." }
     ]
+  },
+  grade1Review: {
+    title: "Ôn Tập Lớp 1",
+    titleEn: "Grade 1 Review",
+    icon: "📚",
+    words: [
+      { word: "bear", vietnamese: "con gấu", emoji: "🐻", ipa: "/beər/", example: "The bear is big.", exampleVn: "Con gấu rất to." },
+      { word: "bird", vietnamese: "con chim", emoji: "🐦", ipa: "/bɜːrd/", example: "The bird can fly.", exampleVn: "Con chim có thể bay." },
+      { word: "crocodile", vietnamese: "con cá sấu", emoji: "🐊", ipa: "/ˈkrɒkədaɪl/", example: "The crocodile is long.", exampleVn: "Con cá sấu rất dài." },
+      { word: "hippo", vietnamese: "con hà mã", emoji: "🦛", ipa: "/ˈhɪpəʊ/", example: "The hippo is heavy.", exampleVn: "Con hà mã rất nặng." },
+      { word: "tiger", vietnamese: "con hổ", emoji: "🐯", ipa: "/ˈtaɪɡər/", example: "The tiger is fast.", exampleVn: "Con hổ rất nhanh." },
+      { word: "lion", vietnamese: "con sư tử", emoji: "🦁", ipa: "/ˈlaɪən/", example: "The lion is strong.", exampleVn: "Con sư tử rất mạnh." },
+      { word: "kangaroo", vietnamese: "con chuột túi", emoji: "🦘", ipa: "/ˌkæŋɡəˈruː/", example: "The kangaroo can jump.", exampleVn: "Con chuột túi có thể nhảy." },
+      { word: "goat", vietnamese: "con dê", emoji: "🐐", ipa: "/ɡoʊt/", example: "I have a goat.", exampleVn: "Tôi có một con dê." },
+      { word: "fish", vietnamese: "con cá", emoji: "🐟", ipa: "/fɪʃ/", example: "The fish swims fast.", exampleVn: "Con cá bơi nhanh." },
+      { word: "hen", vietnamese: "con gà mái", emoji: "🐔", ipa: "/hen/", example: "The hen lays eggs.", exampleVn: "Con gà mái đẻ trứng." },
+      { word: "duck", vietnamese: "con vịt", emoji: "🦆", ipa: "/dʌk/", example: "The duck can swim.", exampleVn: "Con vịt có thể bơi." },
+      { word: "hands", vietnamese: "bàn tay", emoji: "🤲", ipa: "/hændz/", example: "I have two hands.", exampleVn: "Tôi có hai bàn tay." },
+      { word: "legs", vietnamese: "đôi chân", emoji: "🦵", ipa: "/leɡz/", example: "These are my legs.", exampleVn: "Đây là đôi chân của tôi." },
+      { word: "nose", vietnamese: "cái mũi", emoji: "👃", ipa: "/noʊz/", example: "This is my nose.", exampleVn: "Đây là cái mũi của tôi." },
+      { word: "face", vietnamese: "khuôn mặt", emoji: "😊", ipa: "/feɪs/", example: "She has a happy face.", exampleVn: "Cô ấy có khuôn mặt vui." },
+      { word: "arms", vietnamese: "cánh tay", emoji: "💪", ipa: "/ɑːrmz/", example: "I have two arms.", exampleVn: "Tôi có hai cánh tay." },
+      { word: "fingers", vietnamese: "ngón tay", emoji: "🖐️", ipa: "/ˈfɪŋɡərz/", example: "I have ten fingers.", exampleVn: "Tôi có mười ngón tay." },
+      { word: "banana", vietnamese: "quả chuối", emoji: "🍌", ipa: "/bəˈnɑːnə/", example: "I eat a banana.", exampleVn: "Tôi ăn một quả chuối." },
+      { word: "pear", vietnamese: "quả lê", emoji: "🍐", ipa: "/peər/", example: "I have a pear.", exampleVn: "Tôi có một quả lê." },
+      { word: "apple", vietnamese: "quả táo", emoji: "🍎", ipa: "/ˈæpl/", example: "I eat an apple.", exampleVn: "Tôi ăn một quả táo." },
+      { word: "mango", vietnamese: "quả xoài", emoji: "🥭", ipa: "/ˈmæŋɡoʊ/", example: "I like mango.", exampleVn: "Tôi thích xoài." },
+      { word: "lollipop", vietnamese: "kẹo que", emoji: "🍭", ipa: "/ˈlɒlipɒp/", example: "I have a lollipop.", exampleVn: "Tôi có một cái kẹo que." },
+      { word: "juice", vietnamese: "nước ép", emoji: "🧃", ipa: "/dʒuːs/", example: "I drink juice.", exampleVn: "Tôi uống nước ép." },
+      { word: "cookie", vietnamese: "bánh quy", emoji: "🍪", ipa: "/ˈkʊki/", example: "I have a cookie.", exampleVn: "Tôi có một cái bánh quy." },
+      { word: "drink", vietnamese: "thức uống", emoji: "🥤", ipa: "/drɪŋk/", example: "I have a drink.", exampleVn: "Tôi có một ly thức uống." },
+      { word: "sandwich", vietnamese: "bánh mì kẹp", emoji: "🥪", ipa: "/ˈsænwɪdʒ/", example: "I eat a sandwich.", exampleVn: "Tôi ăn một cái bánh mì kẹp." },
+      { word: "lemon", vietnamese: "quả chanh", emoji: "🍋", ipa: "/ˈlemən/", example: "The lemon is sour.", exampleVn: "Quả chanh rất chua." },
+      { word: "kite", vietnamese: "con diều", emoji: "🪁", ipa: "/kaɪt/", example: "I fly a kite.", exampleVn: "Tôi thả diều." },
+      { word: "key", vietnamese: "chìa khóa", emoji: "🔑", ipa: "/kiː/", example: "I have a key.", exampleVn: "Tôi có một chìa khóa." },
+      { word: "jug", vietnamese: "cái bình", emoji: "🫙", ipa: "/dʒʌɡ/", example: "Fill the jug with water.", exampleVn: "Đổ nước vào cái bình." },
+      { word: "leaf", vietnamese: "chiếc lá", emoji: "🌿", ipa: "/liːf/", example: "The leaf is green.", exampleVn: "Chiếc lá màu xanh." },
+      { word: "ink", vietnamese: "mực viết", emoji: "🖊️", ipa: "/ɪŋk/", example: "I write with ink.", exampleVn: "Tôi viết bằng mực." },
+      { word: "moon", vietnamese: "mặt trăng", emoji: "🌙", ipa: "/muːn/", example: "The moon is bright.", exampleVn: "Mặt trăng sáng tỏ." },
+      { word: "ball", vietnamese: "quả bóng", emoji: "⚽", ipa: "/bɔːl/", example: "I kick the ball.", exampleVn: "Tôi đá quả bóng." },
+      { word: "seven", vietnamese: "số bảy", emoji: "7️⃣", ipa: "/ˈsevn/", example: "I count to seven.", exampleVn: "Tôi đếm đến bảy." },
+      { word: "eight", vietnamese: "số tám", emoji: "8️⃣", ipa: "/eɪt/", example: "I am eight years old.", exampleVn: "Tôi tám tuổi." },
+      { word: "nine", vietnamese: "số chín", emoji: "9️⃣", ipa: "/naɪn/", example: "I see nine stars.", exampleVn: "Tôi thấy chín ngôi sao." },
+      { word: "ten", vietnamese: "số mười", emoji: "🔟", ipa: "/ten/", example: "I count to ten.", exampleVn: "Tôi đếm đến mười." }
+    ]
   }
 };
 

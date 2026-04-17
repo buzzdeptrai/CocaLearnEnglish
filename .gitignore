@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Claude Code
+.claude/
+
+# macOS
+.DS_Store
+
+# Screenshots / temp files
+*.png
+*.jpg
+*.jpeg
+tainguyenurl.txt
+
+# Dev tools
+.playwright-mcp/
+tests/
+thoughts/
+validate-data.cjs
+vitest.config.js
+package.json
+package-lock.json
+HANDOFF.MD
+DESIGN-REFERENCE.md

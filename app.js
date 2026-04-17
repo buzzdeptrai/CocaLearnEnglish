@@ -1244,6 +1244,7 @@ function showQuestion() {
     // English -> Vietnamese: show English word, choose Vietnamese translation
     questionEmoji.textContent = '';
     if (questionLabel) questionLabel.textContent = question.correctAnswer;
+    speakWord(question.correctAnswer);
 
     // Build Vietnamese options from the question's word set
     var categoryData = getCurrentQuizCategoryData();
@@ -1268,6 +1269,7 @@ function showQuestion() {
     // Default emoji mode
     questionEmoji.textContent = question.emoji;
     if (questionLabel) questionLabel.textContent = 'Đây là gì nhỉ?';
+    speakWord(question.correctAnswer);
 
     question.options.forEach(function(option) {
       var btn = document.createElement('button');
@@ -2280,9 +2282,12 @@ function startTrueFalseRush() {
   // Show game container
   document.getElementById('true-false-container').style.display = 'block';
 
-  // Initialize game with all words
-  const allWords = getAllWords(vocabularyData);
-  trueFalseGame = new TrueFalseRushGame(allWords);
+  // Get selected category
+  const activeCategory = document.querySelector('#games > .category-selector .quiz-category-btn.active');
+  const category = activeCategory ? activeCategory.dataset.category : 'animals';
+  const categoryWords = vocabularyData[category] ? vocabularyData[category].words.filter(w => w.emoji) : [];
+  const words = categoryWords.length >= 2 ? categoryWords : getAllWords(vocabularyData);
+  trueFalseGame = new TrueFalseRushGame(words);
 
   // Setup swipe listeners
   setupSwipeListeners();
@@ -2308,6 +2313,9 @@ function showNextTrueFalseCard() {
   // Update card display
   document.getElementById('card-emoji').textContent = card.emoji;
   document.getElementById('card-word').textContent = card.word;
+
+  // Speak the word when card appears
+  speakWord(card.word);
 
   // Animate card sliding in
   const slidingCard = document.getElementById('sliding-card');
@@ -2675,7 +2683,7 @@ function startFlashcardInteractive() {
   if (isFlashcardActive) return;
 
   // Get selected category
-  const activeCategory = document.querySelector('.quiz-category-btn.active');
+  const activeCategory = document.querySelector('#games > .category-selector .quiz-category-btn.active');
   const category = activeCategory ? activeCategory.dataset.category : 'animals';
 
   // Hide start screen
@@ -2684,9 +2692,10 @@ function startFlashcardInteractive() {
   // Show game container
   document.getElementById('flashcard-game-container').style.display = 'block';
 
-  // Initialize game with all words
-  const allWords = getAllWords(vocabularyData);
-  flashcardGame = new FlashcardInteractiveGame(allWords, 5);
+  // Initialize game with category words (20 questions)
+  const categoryWords = vocabularyData[category] ? vocabularyData[category].words.filter(w => w.emoji) : [];
+  const words = categoryWords.length >= 2 ? categoryWords : getAllWords(vocabularyData);
+  flashcardGame = new FlashcardInteractiveGame(words, 20);
 
   flashcardScore = 0;
   currentFlashcardIndex = 0;
