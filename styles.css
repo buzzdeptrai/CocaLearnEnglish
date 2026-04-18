@@ -62,7 +62,7 @@ header {
   background: var(--glass-bg);
   backdrop-filter: blur(15px);
   border-bottom: 2px solid var(--glass-border);
-  padding: 20px;
+  padding: 10px 20px;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -79,7 +79,7 @@ header {
 }
 
 .logo {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   font-weight: 800;
   background: linear-gradient(45deg, var(--primary), #FF8E8E);
   -webkit-background-clip: text;
@@ -87,27 +87,27 @@ header {
   -webkit-text-fill-color: transparent;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .header-stats {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 }
 
 .streak-display {
   background: white;
-  padding: 10px 18px;
+  padding: 5px 12px;
   border-radius: 50px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 0.85rem;
   color: #555;
   display: flex;
   align-items: center;
-  gap: 6px;
-  border: 3px solid #FF9500;
+  gap: 4px;
+  border: 2px solid #FF9500;
   transition: all 0.3s ease;
 }
 
@@ -134,16 +134,16 @@ header {
 
 .score-display {
   background: white;
-  padding: 10px 22px;
+  padding: 5px 14px;
   border-radius: 50px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 0.85rem;
   color: #555;
   display: flex;
   align-items: center;
-  gap: 8px;
-  border: 3px solid var(--accent);
+  gap: 6px;
+  border: 2px solid var(--accent);
 }
 
 .score-display span {
@@ -163,35 +163,35 @@ nav {
 .nav-items {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  padding: 12px 25px;
+  padding: 6px 16px;
   border-radius: 50px;
   display: flex;
-  gap: 15px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  gap: 6px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .nav-btn {
   background: none;
   border: none;
-  padding: 12px 20px;
+  padding: 7px 14px;
   border-radius: 30px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
   color: #777;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
-  min-height: 44px; /* Minimum touch target size */
+  min-height: 36px;
   user-select: none;
   font-family: inherit;
   font-weight: 600;
 }
 
 .nav-btn .icon {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .nav-btn.active {
