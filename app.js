@@ -3085,7 +3085,7 @@ function startListeningGame(category) {
     return;
   }
 
-  listeningGame = new ListeningGame(words, 5);
+  listeningGame = new ListeningGame(words, 15);
   isListeningGameActive = true;
   wrongAnswers = [];
 

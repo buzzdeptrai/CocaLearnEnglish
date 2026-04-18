@@ -549,16 +549,26 @@ function generateQuizQuestions(category, count = 5) {
     [words[i], words[j]] = [words[j], words[i]];
   }
 
-  // Generate questions
-  for (let i = 0; i < Math.min(count, words.length); i++) {
-    const correctWord = words[i];
-    const otherWords = words.filter(w => w.word !== correctWord.word);
+  const questionCount = Math.min(count, words.length);
+  // Words used as correct answers – excluded from wrong-answer pool to avoid repeats
+  const correctAnswerSet = new Set(words.slice(0, questionCount).map(w => w.word));
 
-    // Get 3 random wrong answers
+  // Generate questions
+  for (let i = 0; i < questionCount; i++) {
+    const correctWord = words[i];
+
+    // Prefer words NOT used as correct answers; fall back to all others if pool too small
+    let wrongPool = words.filter(w => w.word !== correctWord.word && !correctAnswerSet.has(w.word));
+    if (wrongPool.length < 3) {
+      wrongPool = words.filter(w => w.word !== correctWord.word);
+    }
+
+    // Get 3 random wrong answers (without replacement)
     const wrongAnswers = [];
-    for (let j = 0; j < 3 && j < otherWords.length; j++) {
-      const randomIndex = Math.floor(Math.random() * otherWords.length);
-      wrongAnswers.push(otherWords.splice(randomIndex, 1)[0]);
+    const wrongPoolCopy = [...wrongPool];
+    for (let j = 0; j < 3 && j < wrongPoolCopy.length; j++) {
+      const randomIndex = Math.floor(Math.random() * wrongPoolCopy.length);
+      wrongAnswers.push(wrongPoolCopy.splice(randomIndex, 1)[0]);
     }
 
     // Create options array and shuffle

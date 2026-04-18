@@ -26,12 +26,16 @@
  * @returns {Array} Flat array of all word objects (only words with emoji property)
  */
 function getAllWords(vocabularyData) {
+  const seen = new Set();
   const allWords = [];
   for (const category in vocabularyData) {
     if (vocabularyData[category].words) {
-      // Filter to only include words that have an emoji property
-      const wordsWithEmoji = vocabularyData[category].words.filter(word => word.emoji);
-      allWords.push(...wordsWithEmoji);
+      for (const word of vocabularyData[category].words) {
+        if (word.emoji && !seen.has(word.word)) {
+          seen.add(word.word);
+          allWords.push(word);
+        }
+      }
     }
   }
   return allWords;
